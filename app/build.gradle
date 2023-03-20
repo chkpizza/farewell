@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.antique.farewell'
+    compileSdk Version.compileSdk
+
+    defaultConfig {
+        applicationId "com.antique.farewell"
+        minSdk Version.minSdk
+        targetSdk Version.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation(AndroidX.CORE)
+    implementation(AndroidX.APP_COMPAT)
+    implementation(Google.MATERIAL)
+    implementation(AndroidX.CONSTRAINT_LAYOUT)
+    testImplementation(AndroidTest.JUNIT4)
+    androidTestImplementation(AndroidTest.EXT_JUNIT)
+    androidTestImplementation(AndroidTest.ESPRESSO_CORE)
+
+    implementation platform(Firebase.FIREBASE_BOM)
+    implementation(Firebase.FIREBASE_ANALYTICS)
+    implementation(Firebase.FIREBASE_AUTH)
+    implementation(Firebase.FIREBASE_REALTIME_DATABASE)
+    implementation(Firebase.FIREBASE_STORAGE)
+
+    implementation(AndroidX.VIEW_MODEL)
+    implementation(AndroidX.LIVE_DATA)
+}
