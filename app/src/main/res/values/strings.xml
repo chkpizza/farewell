@@ -2,4 +2,12 @@
     <string name="app_name">farewell</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="on_boarding_text">부모님과의 소중한 추억\n저는 못남겼지만\n여러분은 꼭 남겨보세요</string>
+    <string name="sign_in_button_view_text">시작하기</string>
+    <string name="auth_toolbar_title_text">본인인증</string>
+    <string name="phone_auth_title_view_text">휴대폰 인증</string>
+    <string name="input_phone_number_view_hint_text">휴대폰 번호를 입력해주세요</string>
+    <string name="request_certification_number_view_text">인증번호 받기</string>
+    <string name="input_certification_number_view_hint_text">인증번호를 입력해주세요</string>
+    <string name="confirm_certification_number_view_text">인증번호 확인하기</string>
 </resources>
