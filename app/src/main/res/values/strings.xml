@@ -10,4 +10,5 @@
     <string name="request_certification_number_view_text">인증번호 받기</string>
     <string name="input_certification_number_view_hint_text">인증번호를 입력해주세요</string>
     <string name="confirm_certification_number_view_text">인증번호 확인하기</string>
+    <string name="phone_auth_failure_text">인증에 실패하였습니다</string>
 </resources>
