@@ -1,7 +1,8 @@
-package com.antique.farewell
+package com.antique.farewell.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.antique.farewell.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

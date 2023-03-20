@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.antique.farewell.auth.OnBoardingFragment"
+        android:name="com.antique.farewell.auth.view.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.antique.farewell.auth.AuthFragment"
+        android:name="com.antique.farewell.auth.view.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" />
 </navigation>

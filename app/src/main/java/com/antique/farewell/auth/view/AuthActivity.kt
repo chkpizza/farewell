@@ -1,4 +1,4 @@
-package com.antique.farewell.auth
+package com.antique.farewell.auth.view
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity

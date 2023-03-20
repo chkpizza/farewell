@@ -1,6 +1,5 @@
-package com.antique.farewell.auth
+package com.antique.farewell.auth.view
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
-import com.antique.farewell.MainActivity
 import com.antique.farewell.R
 import com.antique.farewell.databinding.FragmentOnBoardingBinding
 
