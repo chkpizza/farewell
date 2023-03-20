@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -30,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 dependencies {
@@ -50,4 +54,8 @@ dependencies {
 
     implementation(AndroidX.VIEW_MODEL)
     implementation(AndroidX.LIVE_DATA)
+
+    implementation(AndroidX.NAVIGATION_RUNTIME)
+    implementation(AndroidX.NAVIGATION_FRAGMENT)
+    implementation(AndroidX.NAVIGATION_UI)
 }
