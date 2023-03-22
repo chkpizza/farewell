@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/onBoardingFragment">
+
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.antique.login.view.OnBoardingFragment"
+        android:label="OnBoardingFragment" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.antique.login.view.AuthFragment"
+        android:label="AuthFragment" >
+        <action
+            android:id="@+id/action_authFragment_to_setupFragment"
+            app:destination="@id/setupFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_withdrawnCancelFragment"
+            app:destination="@id/withdrawnCancelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setupFragment"
+        android:name="com.antique.login.view.SetupFragment"
+        android:label="fragment_setup"
+        tools:layout="@layout/fragment_setup" />
+    <fragment
+        android:id="@+id/withdrawnCancelFragment"
+        android:name="com.antique.login.view.WithdrawnCancelFragment"
+        android:label="fragment_withdrawn_cancel"
+        tools:layout="@layout/fragment_withdrawn_cancel" />
+</navigation>

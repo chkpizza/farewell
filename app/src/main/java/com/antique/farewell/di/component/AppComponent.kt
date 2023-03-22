@@ -1,8 +1,8 @@
 package com.antique.farewell.di.component
 
-import com.antique.farewell.auth.di.component.AuthComponent
 import com.antique.farewell.di.module.RepositoryModule
 import com.antique.farewell.di.module.ViewModelFactoryModule
+import com.antique.login.di.component.AuthComponent
 import dagger.Component
 import dagger.Module
 import javax.inject.Singleton
@@ -12,7 +12,7 @@ import javax.inject.Singleton
     modules = [
         SubcomponentsModule::class,
         ViewModelFactoryModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
     ]
 )
 interface AppComponent {

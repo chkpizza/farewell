@@ -1,7 +1,7 @@
 package com.antique.farewell.di.module
 
-import com.antique.farewell.auth.repo.AuthRepository
-import com.antique.farewell.auth.repo.AuthRepositoryImpl
+import com.antique.login.repo.AuthRepository
+import com.antique.login.repo.AuthRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher

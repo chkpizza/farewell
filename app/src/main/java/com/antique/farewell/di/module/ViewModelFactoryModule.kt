@@ -1,7 +1,7 @@
 package com.antique.farewell.di.module
 
 import androidx.lifecycle.ViewModelProvider
-import com.antique.common.ViewModelFactory
+import com.antique.common.di.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 

@@ -1,0 +1,21 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="on_boarding_text">부모님과의 소중한 추억\n저는 못남겼지만\n여러분은 꼭 남겨보세요</string>
+    <string name="sign_in_button_view_text">시작하기</string>
+    <string name="auth_toolbar_title_text">본인인증</string>
+    <string name="setup_toolbar_title_text">프로필 설정</string>
+    <string name="withdrawn_cancel_title_text">회원탈퇴 철회</string>
+    <string name="phone_auth_title_view_text">휴대폰 인증</string>
+    <string name="input_phone_number_view_hint_text">휴대폰 번호를 입력해주세요</string>
+    <string name="request_certification_number_view_text">인증번호 받기</string>
+    <string name="input_certification_number_view_hint_text">인증번호를 입력해주세요</string>
+    <string name="confirm_certification_number_view_text">인증번호 확인하기</string>
+    <string name="phone_auth_failure_text">인증에 실패하였습니다</string>
+    <string name="nick_name_title_view_text">닉네임</string>
+    <string name="input_nick_name_view_hint_text">사용하실 닉네임을 입력해주세요</string>
+    <string name="register_user_failure_text">E1000 사용자 등록에 실패했습니다</string>
+    <string name="withdrawn_cancel_failure_text">E1001 회원 탈퇴를 철회하지 못했습니다</string>
+    <string name="withdrawn_cancel_view_text">철회하기</string>
+    <string name="withdrawn_cancel_description_view_text">해당 계정은 회원 탈퇴 요청된 계정입니다. 회원 탈퇴 후 30일 이내에는 계정을 복원할 수 있습니다. 30일 이후에는 회원님의 모든 정보가 삭제됩니다. 회원 탈퇴를 철회하실 경우 다시 서비스를  이용하실 수  있습니다. 다시 서비스를 이용하시려면 아래의 시작하기 버튼을  눌러주세요</string>
+</resources>

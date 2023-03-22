@@ -1,10 +1,10 @@
 package com.antique.farewell
 
 import android.app.Application
-import com.antique.farewell.auth.di.AuthComponentProvider
-import com.antique.farewell.auth.di.component.AuthComponent
 import com.antique.farewell.di.component.AppComponent
 import com.antique.farewell.di.component.DaggerAppComponent
+import com.antique.login.di.AuthComponentProvider
+import com.antique.login.di.component.AuthComponent
 
 class FarewellApplication : Application(), AuthComponentProvider {
     val appComponent by lazy { initAppComponent() }
@@ -20,4 +20,5 @@ class FarewellApplication : Application(), AuthComponentProvider {
     override fun provideAuthComponent(): AuthComponent {
         return appComponent.getAuthComponent().create()
     }
+
 }
