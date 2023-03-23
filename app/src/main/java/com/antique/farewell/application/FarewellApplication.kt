@@ -1,4 +1,4 @@
-package com.antique.farewell
+package com.antique.farewell.application
 
 import android.app.Application
 import com.antique.farewell.di.component.AppComponent

@@ -16,3 +16,6 @@ rootProject.name = "farewell"
 include ':app'
 include ':common'
 include ':feature:login'
+include ':feature:story'
+include ':feature:information'
+include ':feature:settings'
