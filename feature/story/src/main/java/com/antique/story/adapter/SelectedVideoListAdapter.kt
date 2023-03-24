@@ -12,7 +12,9 @@ import com.antique.story.databinding.ListItemSelectedVideoBinding
 import com.bumptech.glide.Glide
 import java.text.DecimalFormat
 
-class SelectedVideoListAdapter : ListAdapter<Video, SelectedVideoListAdapter.SelectedVideoListViewHolder>(diffUtil) {
+class SelectedVideoListAdapter(
+    private val onItemClickListener: (Video) -> Unit
+) : ListAdapter<Video, SelectedVideoListAdapter.SelectedVideoListViewHolder>(diffUtil) {
     inner class SelectedVideoListViewHolder(private val binding: ListItemSelectedVideoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Video) {
             val second = (item.duration / 1000)
@@ -22,6 +24,10 @@ class SelectedVideoListAdapter : ListAdapter<Video, SelectedVideoListAdapter.Sel
             Glide.with(binding.videoView.context)
                 .load(item.uri)
                 .into(binding.videoView)
+
+            binding.removeVideoView.setOnClickListener {
+                onItemClickListener(item)
+            }
         }
     }
 

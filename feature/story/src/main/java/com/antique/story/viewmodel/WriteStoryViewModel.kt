@@ -20,4 +20,20 @@ class WriteStoryViewModel @Inject constructor() : ViewModel() {
     fun bindVideos(videos: List<Video>) {
         _videos.value = videos
     }
+
+    fun removePhoto(photo: String) {
+        _photos.value?.let {
+            _photos.value = it.toMutableList().apply {
+                remove(photo)
+            }.toList()
+        }
+    }
+
+    fun removeVideo(video: Video) {
+        _videos.value?.let {
+            _videos.value = it.toMutableList().apply {
+                remove(video)
+            }.toList()
+        }
+    }
 }
