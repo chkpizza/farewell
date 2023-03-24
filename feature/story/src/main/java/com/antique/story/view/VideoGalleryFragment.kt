@@ -23,6 +23,7 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.antique.story.R
 import com.antique.story.adapter.VideoListAdapter
+import com.antique.story.data.Video
 import com.antique.story.databinding.FragmentVideoGalleryBinding
 import com.antique.story.di.StoryComponentProvider
 import com.antique.story.viewmodel.StoryViewModel
@@ -123,7 +124,7 @@ class VideoGalleryFragment : Fragment() {
             MediaStore.Video.Media.EXTERNAL_CONTENT_URI
         }
 
-        val projection = arrayOf(MediaStore.Video.Media._ID)
+        val projection = arrayOf(MediaStore.Video.Media._ID, MediaStore.Video.Media.DURATION)
         val selection = "${MediaStore.Video.Media.DURATION} <= ?"
         val selectionArgs = arrayOf(TimeUnit.MILLISECONDS.convert(3, TimeUnit.MINUTES).toString())
 
@@ -135,18 +136,21 @@ class VideoGalleryFragment : Fragment() {
             MediaStore.Video.VideoColumns.DATE_TAKEN + " DESC"
         )
 
-        val uris = mutableListOf<String>()
+        val videos = mutableListOf<Video>()
 
         cursor?.let {
-            val columnIdx = cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID)
+            val idColumnIdx = cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID)
+            val durationColumnIdx = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)
             while(cursor.moveToNext()) {
-                val uri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, cursor.getLong(columnIdx))
-                uris.add(uri.toString())
+                val duration = cursor.getInt(durationColumnIdx)
+                val contentUri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, cursor.getLong(idColumnIdx))
+
+                videos.add(Video(contentUri.toString(), duration))
             }
             it.close()
         }
 
-        videoListAdapter.submitList(uris)
+        videoListAdapter.submitList(videos)
     }
 
     override fun onDestroyView() {

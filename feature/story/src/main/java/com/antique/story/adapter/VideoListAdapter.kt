@@ -8,19 +8,25 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.antique.story.R
+import com.antique.story.data.Video
 import com.antique.story.databinding.ListItemVideoBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import java.text.DecimalFormat
 
 class VideoListAdapter(
     private val onItemClickListener: (Int) -> Unit
-) : ListAdapter<String, VideoListAdapter.VideoListViewHolder>(diffUtil) {
-    private val selectedVideos = mutableListOf<String>()
+) : ListAdapter<Video, VideoListAdapter.VideoListViewHolder>(diffUtil) {
+    private val selectedVideos = mutableListOf<Video>()
 
     inner class VideoListViewHolder(private val binding: ListItemVideoBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: String) {
+        fun bind(item: Video) {
+            val second = (item.duration / 1000)
+            val decimalFormat = DecimalFormat("00")
+            binding.videoDurationView.text = "${decimalFormat.format(second / 60)} : ${decimalFormat.format(second % 60)}"
+
             Glide.with(binding.galleryVideoView.context)
-                .load(item)
+                .load(item.uri)
                 .into(binding.galleryVideoView)
 
             if(selectedVideos.contains(item)) {
@@ -48,12 +54,12 @@ class VideoListAdapter(
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<Video>() {
+            override fun areItemsTheSame(oldItem: Video, newItem: Video): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+            override fun areContentsTheSame(oldItem: Video, newItem: Video): Boolean {
                 return oldItem == newItem
             }
 
