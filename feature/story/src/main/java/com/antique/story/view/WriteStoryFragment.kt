@@ -2,6 +2,8 @@ package com.antique.story.view
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -73,7 +75,6 @@ class WriteStoryFragment : Fragment() {
         binding.writeStoryToolbarView.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.register_story -> {
-                    //postViewModel.registerPost()
                     findNavController().navigateUp()
                     true
                 }
@@ -83,11 +84,15 @@ class WriteStoryFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        selectedPhotoListAdapter = SelectedPhotoListAdapter()
+        selectedPhotoListAdapter = SelectedPhotoListAdapter {
+            storyViewModel.removePhoto(it)
+        }
         binding.selectedPhotoListView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.selectedPhotoListView.adapter = selectedPhotoListAdapter
 
-        selectedVideoListAdapter = SelectedVideoListAdapter()
+        selectedVideoListAdapter = SelectedVideoListAdapter {
+            storyViewModel.removeVideo(it)
+        }
         binding.selectedVideoListView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.selectedVideoListView.adapter = selectedVideoListAdapter
     }
@@ -99,6 +104,15 @@ class WriteStoryFragment : Fragment() {
         binding.addVideoView.setOnClickListener {
             findNavController().navigate(R.id.action_writeStoryFragment_to_videoGalleryFragment)
         }
+        binding.inputStoryView.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                s?.let {
+                    registerStoryMenuItem.isEnabled = it.isNotEmpty()
+                }
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 
     private fun setupObservers() {

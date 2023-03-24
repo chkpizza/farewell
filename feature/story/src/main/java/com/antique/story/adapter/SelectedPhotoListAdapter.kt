@@ -10,12 +10,18 @@ import com.antique.story.R
 import com.antique.story.databinding.ListItemSelectedPhotoBinding
 import com.bumptech.glide.Glide
 
-class SelectedPhotoListAdapter : ListAdapter<String, SelectedPhotoListAdapter.SelectedPhotoListViewHolder>(diffUtil) {
+class SelectedPhotoListAdapter(
+    private val onItemClickListener: (String) -> Unit
+) : ListAdapter<String, SelectedPhotoListAdapter.SelectedPhotoListViewHolder>(diffUtil) {
     inner class SelectedPhotoListViewHolder(private val binding: ListItemSelectedPhotoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) {
             Glide.with(binding.photoView.context)
                 .load(item)
                 .into(binding.photoView)
+
+            binding.removePhotoView.setOnClickListener {
+                onItemClickListener(item)
+            }
         }
     }
 
