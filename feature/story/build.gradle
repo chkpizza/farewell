@@ -63,4 +63,9 @@ dependencies {
 
     implementation(Google.DAGGER)
     kapt(Google.DAGGER_COMPILER)
+
+    implementation(AndroidX.RECYCLER_VIEW)
+
+    implementation(ThirdParty.GLIDE)
+    kapt(ThirdParty.GLIDE_COMPILER)
 }

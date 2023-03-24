@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/write_story_nav_graph"
+    app:startDestination="@id/writeStoryFragment">
+
+    <fragment
+        android:id="@+id/writeStoryFragment"
+        android:name="com.antique.story.view.WriteStoryFragment"
+        android:label="WriteStoryFragment" >
+        <action
+            android:id="@+id/action_writeStoryFragment_to_videoGalleryFragment"
+            app:destination="@id/videoGalleryFragment" />
+        <action
+            android:id="@+id/action_writeStoryFragment_to_photoGalleryFragment"
+            app:destination="@id/photoGalleryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoGalleryFragment"
+        android:name="com.antique.story.view.PhotoGalleryFragment"
+        android:label="PhotoGalleryFragment" />
+    <fragment
+        android:id="@+id/videoGalleryFragment"
+        android:name="com.antique.story.view.VideoGalleryFragment"
+        android:label="VideoGalleryFragment" />
+</navigation>
