@@ -23,10 +23,9 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.antique.story.R
 import com.antique.story.adapter.VideoListAdapter
-import com.antique.story.data.Video
+import com.antique.story.data.place.Video
 import com.antique.story.databinding.FragmentVideoGalleryBinding
 import com.antique.story.di.StoryComponentProvider
-import com.antique.story.viewmodel.StoryViewModel
 import com.antique.story.viewmodel.WriteStoryViewModel
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

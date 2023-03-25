@@ -5,6 +5,9 @@ plugins {
     id 'kotlin-kapt'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.antique.story'
     compileSdk Version.compileSdk
@@ -15,6 +18,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "KAKAO_REST_API_KEY", properties["KAKAO_REST_API_KEY"]
+
     }
 
     buildTypes {
@@ -68,4 +74,10 @@ dependencies {
 
     implementation(ThirdParty.GLIDE)
     kapt(ThirdParty.GLIDE_COMPILER)
+
+    implementation(ThirdParty.RETROFIT)
+    implementation(ThirdParty.RETROFIT_CONVERTER)
+    implementation(Google.GSON)
+
+
 }

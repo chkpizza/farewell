@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -22,7 +23,6 @@ import com.antique.story.adapter.SelectedPhotoListAdapter
 import com.antique.story.adapter.SelectedVideoListAdapter
 import com.antique.story.databinding.FragmentWriteStoryBinding
 import com.antique.story.di.StoryComponentProvider
-import com.antique.story.viewmodel.StoryViewModel
 import com.antique.story.viewmodel.WriteStoryViewModel
 import javax.inject.Inject
 
@@ -104,6 +104,9 @@ class WriteStoryFragment : Fragment() {
         binding.addVideoView.setOnClickListener {
             findNavController().navigate(R.id.action_writeStoryFragment_to_videoGalleryFragment)
         }
+        binding.addLocationView.setOnClickListener {
+            findNavController().navigate(R.id.action_writeStoryFragment_to_searchLocationFragment)
+        }
         binding.inputStoryView.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 s?.let {
@@ -113,6 +116,10 @@ class WriteStoryFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        binding.removeLocationView.setOnClickListener {
+            storyViewModel.removeLocation()
+        }
     }
 
     private fun setupObservers() {
@@ -122,6 +129,16 @@ class WriteStoryFragment : Fragment() {
 
         storyViewModel.videos.observe(viewLifecycleOwner) {
             selectedVideoListAdapter.submitList(it)
+        }
+
+        storyViewModel.place.observe(viewLifecycleOwner) {
+            it?.let {
+                binding.locationView.isVisible = true
+                binding.locationNameView.text = it.placeName
+            } ?: run {
+                binding.locationView.isVisible = false
+                binding.locationNameView.text = ""
+            }
         }
     }
 }

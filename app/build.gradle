@@ -50,9 +50,6 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation(AndroidTest.JUNIT4)
     androidTestImplementation(AndroidTest.EXT_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
@@ -74,4 +71,11 @@ dependencies {
 
     implementation(Google.DAGGER)
     kapt(Google.DAGGER_COMPILER)
+
+    implementation(ThirdParty.RETROFIT)
+    implementation(ThirdParty.RETROFIT_CONVERTER)
+    implementation(Google.GSON)
+
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
 }

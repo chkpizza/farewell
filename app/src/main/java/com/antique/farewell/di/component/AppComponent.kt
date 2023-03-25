@@ -1,6 +1,7 @@
 package com.antique.farewell.di.component
 
 import com.antique.farewell.di.module.RepositoryModule
+import com.antique.farewell.di.module.RetrofitModule
 import com.antique.farewell.di.module.ViewModelFactoryModule
 import com.antique.login.di.component.AuthComponent
 import com.antique.story.di.component.StoryComponent
@@ -14,6 +15,7 @@ import javax.inject.Singleton
         SubcomponentsModule::class,
         ViewModelFactoryModule::class,
         RepositoryModule::class,
+        RetrofitModule::class
     ]
 )
 interface AppComponent {
