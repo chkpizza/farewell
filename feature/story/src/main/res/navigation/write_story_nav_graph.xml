@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_writeStoryFragment_to_photoGalleryFragment"
             app:destination="@id/photoGalleryFragment" />
+        <action
+            android:id="@+id/action_writeStoryFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment" />
     </fragment>
     <fragment
         android:id="@+id/photoGalleryFragment"
@@ -23,4 +26,8 @@
         android:id="@+id/videoGalleryFragment"
         android:name="com.antique.story.view.VideoGalleryFragment"
         android:label="VideoGalleryFragment" />
+    <fragment
+        android:id="@+id/searchLocationFragment"
+        android:name="com.antique.story.view.SearchLocationFragment"
+        android:label="SearchLocationFragment" />
 </navigation>

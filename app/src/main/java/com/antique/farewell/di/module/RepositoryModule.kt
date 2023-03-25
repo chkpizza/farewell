@@ -2,6 +2,9 @@ package com.antique.farewell.di.module
 
 import com.antique.login.repo.AuthRepository
 import com.antique.login.repo.AuthRepositoryImpl
+import com.antique.story.repo.WriteStoryRepository
+import com.antique.story.repo.WriteStoryRepositoryImpl
+import com.antique.story.retrofit.PlaceApiService
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,5 +23,11 @@ class RepositoryModule {
     @Provides
     fun provideAuthRepository(dispatcher: CoroutineDispatcher): AuthRepository {
         return AuthRepositoryImpl(dispatcher)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStoryRepository(apiService: PlaceApiService, dispatcher: CoroutineDispatcher): WriteStoryRepository {
+        return WriteStoryRepositoryImpl(apiService, dispatcher)
     }
 }

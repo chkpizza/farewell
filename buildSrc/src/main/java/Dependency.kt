@@ -17,6 +17,7 @@ object Google {
     const val GOOGLE_PLAY_SERVICE = "com.google.android.gms:play-services-auth:20.4.1"
     const val DAGGER = "com.google.dagger:dagger:2.44"
     const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:2.44"
+    const val GSON = "com.google.code.gson:gson:2.9.0"
 }
 
 object Kotlin {
@@ -43,4 +44,6 @@ object ThirdParty {
     const val CIRCULAR_IMAGE_VIEW = "com.mikhaellopez:circularimageview:4.3.1"
     const val DOTS_INDICATOR = "com.tbuonomo:dotsindicator:4.3"
     const val CARD_STACK_VIEW = "com.github.yuyakaido:cardstackview:2.3.4"
+    const val RETROFIT = "com.squareup.retrofit2:retrofit:2.9.0"
+    const val RETROFIT_CONVERTER = "com.squareup.retrofit2:converter-gson:2.9.0"
 }

@@ -13,4 +13,8 @@
     <string name="video_gallery_toolbar_view_text">동영상선택</string>
     <string name="select_photo_menu_text">선택하기</string>
     <string name="select_video_menu_text">선택하기</string>
+    <string name="search_location_view_text">검색</string>
+    <string name="input_location_view_hint_text">장소 이름을 입력해주세요</string>
+    <string name="search_result_view_text">검색결과</string>
+    <string name="place_search_failure_text">해당 장소를 검색하지 못했습니다</string>
 </resources>
