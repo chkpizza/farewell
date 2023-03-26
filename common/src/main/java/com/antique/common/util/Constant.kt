@@ -5,6 +5,7 @@ class Constant {
         const val USER_NODE = "User"
         const val WITHDRAWN_NODE = "Withdrawn"
         const val STORY_NODE = "Story"
+        const val DOOR_NODE = "Door"
         const val PHOTO_CONTENT = "Photo"
         const val VIDEO_CONTENT = "Video"
     }

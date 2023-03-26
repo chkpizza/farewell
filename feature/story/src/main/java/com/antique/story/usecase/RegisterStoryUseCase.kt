@@ -1,9 +1,9 @@
 package com.antique.story.usecase
 
-import com.antique.story.data.story.Content
+import com.antique.story.data.story.story.Content
 import com.antique.story.data.story.Place
-import com.antique.story.data.story.Story
-import com.antique.story.data.story.StoryUiState
+import com.antique.story.data.story.story.Story
+import com.antique.story.data.story.story.StoryUiState
 import com.antique.story.repo.WriteStoryRepository
 import javax.inject.Inject
 

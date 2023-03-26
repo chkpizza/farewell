@@ -2,6 +2,8 @@ package com.antique.farewell.di.module
 
 import com.antique.login.repo.AuthRepository
 import com.antique.login.repo.AuthRepositoryImpl
+import com.antique.story.repo.StoryRepository
+import com.antique.story.repo.StoryRepositoryImpl
 import com.antique.story.repo.WriteStoryRepository
 import com.antique.story.repo.WriteStoryRepositoryImpl
 import com.antique.story.retrofit.PlaceApiService
@@ -27,7 +29,13 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideStoryRepository(apiService: PlaceApiService, dispatcher: CoroutineDispatcher): WriteStoryRepository {
+    fun provideWriteStoryRepository(apiService: PlaceApiService, dispatcher: CoroutineDispatcher): WriteStoryRepository {
         return WriteStoryRepositoryImpl(apiService, dispatcher)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStoryRepository(dispatcher: CoroutineDispatcher): StoryRepository {
+        return StoryRepositoryImpl(dispatcher)
     }
 }

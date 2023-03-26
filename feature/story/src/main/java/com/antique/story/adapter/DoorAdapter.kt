@@ -7,23 +7,25 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.antique.story.R
+import com.antique.story.data.story.door.DoorUiState
 import com.antique.story.databinding.ItemDoorBinding
 
-class DoorAdapter : ListAdapter<String, DoorAdapter.DoorViewHolder>(diffUtil) {
+class DoorAdapter : ListAdapter<DoorUiState, DoorAdapter.DoorViewHolder>(diffUtil) {
     inner class DoorViewHolder(private val binding: ItemDoorBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: String) {
-
+        fun bind(item: DoorUiState) {
+            binding.doorNickNameView.text = item.nickName
+            binding.doorTitleView.text = item.doorText
         }
     }
     companion object {
         const val VIEW_TYPE = 1000
 
-        val diffUtil = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<DoorUiState>() {
+            override fun areItemsTheSame(oldItem: DoorUiState, newItem: DoorUiState): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+            override fun areContentsTheSame(oldItem: DoorUiState, newItem: DoorUiState): Boolean {
                 return oldItem == newItem
             }
 

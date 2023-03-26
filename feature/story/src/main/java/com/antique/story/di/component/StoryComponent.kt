@@ -2,10 +2,7 @@ package com.antique.story.di.component
 
 import com.antique.story.di.module.StoryViewModelModule
 import com.antique.story.di.module.WriteStoryViewModelModule
-import com.antique.story.view.PhotoGalleryFragment
-import com.antique.story.view.SearchLocationFragment
-import com.antique.story.view.VideoGalleryFragment
-import com.antique.story.view.WriteStoryFragment
+import com.antique.story.view.*
 import dagger.Subcomponent
 
 @Subcomponent(
@@ -20,6 +17,7 @@ interface StoryComponent {
         fun create(): StoryComponent
     }
 
+    fun inject(storyFragment: StoryFragment)
     fun inject(writeStoryFragment: WriteStoryFragment)
     fun inject(photoGalleryFragment: PhotoGalleryFragment)
     fun inject(videoGalleryFragment: VideoGalleryFragment)
