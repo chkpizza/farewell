@@ -82,13 +82,19 @@ class StoryViewModel @Inject constructor(
 
     fun updateStory(storyUiState: StoryUiState) {
         story.value?.let {
+            (it as? ApiState.Success)?.let { state ->
+                val newList = state.items.toMutableList()
+                newList.add(0, storyUiState)
+                _story.value = ApiState.Success(newList.toList())
+            }
+        }
+    }
 
-            _story.value?.let {
-                (it as? ApiState.Success)?.let { state ->
-                    val newList = state.items.toMutableList()
-                    newList.add(0, storyUiState)
-                    _story.value = ApiState.Success(newList.toList())
-                }
+    fun removeStory(storyId: String) {
+        story.value?.let {
+            (it as? ApiState.Success)?.let { state ->
+                val newList = state.items.filter { story -> story.storyId != storyId }
+                _story.value = ApiState.Success(newList)
             }
         }
     }

@@ -20,4 +20,7 @@
     <string name="register_story_failure_text">스토리를 등록하지 못했습니다</string>
     <string name="load_story_failure_text">스토리를 불러오지 못했습니다</string>
     <string name="load_door_failure_text">내 스토리 대문을 읽어오지 못했습니다</string>
+    <string name="remove_story_menu_text">삭제하기</string>
+    <string name="load_story_details_failure_text">스토리를 불러오지 못했습니다</string>
+    <string name="remove_story_failure_text">스토리를 삭제하지 못했습니다</string>
 </resources>

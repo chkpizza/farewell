@@ -78,7 +78,8 @@ class StoryFragment : Fragment() {
     private fun setupRecyclerView() {
         doorAdapter = DoorAdapter()
         storyListAdapter = StoryListAdapter {
-            Toast.makeText(requireActivity(), it.toString(), Toast.LENGTH_SHORT).show()
+            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailsFragment(it.storyId)
+            findNavController().navigate(action)
         }
         val config = ConcatAdapter.Config.Builder().apply {
             setIsolateViewTypes(false)

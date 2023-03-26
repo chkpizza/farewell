@@ -7,4 +7,6 @@ interface StoryRepository {
     suspend fun getStories(): List<Story>
     suspend fun getMoreStories(idx: String): List<Story>
     suspend fun getDoor(): Door
+    suspend fun getStory(storyId: String): Story
+    suspend fun removeStory(storyId: String): Boolean
 }

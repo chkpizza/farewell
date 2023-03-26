@@ -18,6 +18,11 @@ object Google {
     const val DAGGER = "com.google.dagger:dagger:2.44"
     const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:2.44"
     const val GSON = "com.google.code.gson:gson:2.9.0"
+    const val EXOPLAYER_CORE = "com.google.android.exoplayer:exoplayer-core:2.18.4"
+    const val EXOPLAYER_DASH = "com.google.android.exoplayer:exoplayer-dash:2.18.4"
+    const val EXOPLAYER_HLS = "com.google.android.exoplayer:exoplayer-hls:2.18.4"
+    const val EXOPLAYER_SMOOTH_STREAMING = "com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.4"
+    const val EXOPLAYER_UI = "com.google.android.exoplayer:exoplayer-ui:2.18.4"
 }
 
 object Kotlin {

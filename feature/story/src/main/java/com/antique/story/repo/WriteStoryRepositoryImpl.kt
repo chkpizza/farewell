@@ -46,13 +46,12 @@ class WriteStoryRepositoryImpl @Inject constructor(
                 else -> {}
             }
         }
-
-        val storyId = Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).push().key.toString()
+        val uid = Firebase.auth.currentUser?.uid.toString()
+        val storyId = Firebase.database.reference.child(Constant.STORY_NODE).child(uid).push().key.toString()
         val story = Story(body, contentList, place, date, storyId)
 
-        val uid = Firebase.auth.currentUser?.uid.toString()
-        Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).child(uid).child(storyId).setValue(story).await()
-        Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).child(uid).child(storyId).get().await().getValue(
+        Firebase.database.reference.child(Constant.STORY_NODE).child(uid).child(storyId).setValue(story).await()
+        Firebase.database.reference.child(Constant.STORY_NODE).child(uid).child(storyId).get().await().getValue(
             Story::class.java)?.let {
             it
         } ?: throw RuntimeException()
