@@ -26,6 +26,7 @@ class StoryViewModel @Inject constructor(
     val door: LiveData<ApiState<DoorUiState>> get() = _door
 
     private lateinit var idx: String
+    private var isLoading: Boolean = false
 
     fun loadDoor() {
         viewModelScope.launch {
@@ -57,7 +58,7 @@ class StoryViewModel @Inject constructor(
     fun loadMoreStories() {
         viewModelScope.launch {
             try {
-                if(::idx.isInitialized) {
+                if(::idx.isInitialized && !isLoading) {
                     val response = getMoreStoriesUseCase(idx)
 
                     if(response.isNotEmpty()) {
