@@ -17,13 +17,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.antique.common.util.ApiState
+import com.antique.common.util.EventObserver
 import com.antique.common.util.ViewInsetsCallback
 import com.antique.story.R
 import com.antique.story.adapter.SelectedPhotoListAdapter
 import com.antique.story.adapter.SelectedVideoListAdapter
 import com.antique.story.databinding.FragmentWriteStoryBinding
 import com.antique.story.di.StoryComponentProvider
+import com.antique.story.viewmodel.StoryViewModel
 import com.antique.story.viewmodel.WriteStoryViewModel
+import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 class WriteStoryFragment : Fragment() {
@@ -31,7 +35,8 @@ class WriteStoryFragment : Fragment() {
     private val binding get() = _binding!!
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val storyViewModel by navGraphViewModels<WriteStoryViewModel>(R.id.write_story_nav_graph) { viewModelFactory }
+    private val writeStoryViewModel by navGraphViewModels<WriteStoryViewModel>(R.id.write_story_nav_graph) { viewModelFactory }
+    private val storyViewModel by navGraphViewModels<StoryViewModel>(R.id.story_nav_graph) { viewModelFactory }
 
     private lateinit var registerStoryMenuItem: MenuItem
     private lateinit var selectedPhotoListAdapter: SelectedPhotoListAdapter
@@ -75,7 +80,7 @@ class WriteStoryFragment : Fragment() {
         binding.writeStoryToolbarView.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.register_story -> {
-                    findNavController().navigateUp()
+                    writeStoryViewModel.registerStory(binding.inputStoryView.text.toString())
                     true
                 }
                 else -> false
@@ -85,13 +90,13 @@ class WriteStoryFragment : Fragment() {
 
     private fun setupRecyclerView() {
         selectedPhotoListAdapter = SelectedPhotoListAdapter {
-            storyViewModel.removePhoto(it)
+            writeStoryViewModel.removePhoto(it)
         }
         binding.selectedPhotoListView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.selectedPhotoListView.adapter = selectedPhotoListAdapter
 
         selectedVideoListAdapter = SelectedVideoListAdapter {
-            storyViewModel.removeVideo(it)
+            writeStoryViewModel.removeVideo(it)
         }
         binding.selectedVideoListView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.selectedVideoListView.adapter = selectedVideoListAdapter
@@ -118,20 +123,20 @@ class WriteStoryFragment : Fragment() {
         })
 
         binding.removeLocationView.setOnClickListener {
-            storyViewModel.removeLocation()
+            writeStoryViewModel.removeLocation()
         }
     }
 
     private fun setupObservers() {
-        storyViewModel.photos.observe(viewLifecycleOwner) {
+        writeStoryViewModel.photos.observe(viewLifecycleOwner) {
             selectedPhotoListAdapter.submitList(it)
         }
 
-        storyViewModel.videos.observe(viewLifecycleOwner) {
+        writeStoryViewModel.videos.observe(viewLifecycleOwner) {
             selectedVideoListAdapter.submitList(it)
         }
 
-        storyViewModel.place.observe(viewLifecycleOwner) {
+        writeStoryViewModel.place.observe(viewLifecycleOwner) {
             it?.let {
                 binding.locationView.isVisible = true
                 binding.locationNameView.text = it.placeName
@@ -140,5 +145,22 @@ class WriteStoryFragment : Fragment() {
                 binding.locationNameView.text = ""
             }
         }
+
+        writeStoryViewModel.registerStoryState.observe(viewLifecycleOwner) {
+           when(it) {
+               is ApiState.Success -> {
+                   binding.writeStoryProgressView.isVisible = false
+                   storyViewModel.updateStory(it.items)
+                   findNavController().navigateUp()
+               }
+               is ApiState.Error -> {
+                   binding.writeStoryProgressView.isVisible = false
+                   Snackbar.make(binding.root, getString(R.string.register_story_failure_text), Snackbar.LENGTH_LONG).show()
+               }
+               is ApiState.Loading -> {
+                   binding.writeStoryProgressView.isVisible = true
+               }
+           }
+       }
     }
 }

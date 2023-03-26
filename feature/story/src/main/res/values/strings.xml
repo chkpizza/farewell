@@ -17,4 +17,5 @@
     <string name="input_location_view_hint_text">장소 이름을 입력해주세요</string>
     <string name="search_result_view_text">검색결과</string>
     <string name="place_search_failure_text">해당 장소를 검색하지 못했습니다</string>
+    <string name="register_story_failure_text">스토리를 등록하지 못했습니다</string>
 </resources>

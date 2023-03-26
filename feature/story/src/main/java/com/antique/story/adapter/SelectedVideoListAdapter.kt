@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.antique.story.R
-import com.antique.story.data.place.Video
+import com.antique.story.data.story.Video
 import com.antique.story.databinding.ListItemSelectedVideoBinding
 import com.bumptech.glide.Glide
 import java.text.DecimalFormat

@@ -1,21 +1,27 @@
 package com.antique.story.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.antique.common.util.ApiState
+import com.antique.common.util.Constant
 import com.antique.common.util.SingleEvent
-import com.antique.story.data.place.PlaceInformation
-import com.antique.story.data.place.PlaceUiState
-import com.antique.story.data.place.Video
+import com.antique.story.data.story.Video
+import com.antique.story.data.story.Content
+import com.antique.story.data.story.Place
+import com.antique.story.data.story.PlaceUiState
+import com.antique.story.data.story.StoryUiState
 import com.antique.story.usecase.GetLocationsUseCase
+import com.antique.story.usecase.RegisterStoryUseCase
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class WriteStoryViewModel @Inject constructor(
-    private val getLocationsUseCase: GetLocationsUseCase
+    private val getLocationsUseCase: GetLocationsUseCase,
+    private val registerStoryUseCase: RegisterStoryUseCase
 ) : ViewModel() {
     private val _photos = MutableLiveData<List<String>>()
     val photos: LiveData<List<String>> get() = _photos
@@ -23,11 +29,14 @@ class WriteStoryViewModel @Inject constructor(
     private val _videos = MutableLiveData<List<Video>>()
     val videos: LiveData<List<Video>> get() = _videos
 
-    private val _place = MutableLiveData<PlaceInformation?>()
-    val place: LiveData<PlaceInformation?> get() = _place
+    private val _place = MutableLiveData<Place?>()
+    val place: LiveData<Place?> get() = _place
 
     private val _places = MutableLiveData<ApiState<PlaceUiState>?>()
     val places: LiveData<ApiState<PlaceUiState>?> get() = _places
+
+    private val _registerStoryState = MutableLiveData<ApiState<StoryUiState>>()
+    val registerStoryState: LiveData<ApiState<StoryUiState>> get() = _registerStoryState
 
     private lateinit var _key: String
     private lateinit var _query: String
@@ -41,7 +50,7 @@ class WriteStoryViewModel @Inject constructor(
         _videos.value = videos
     }
 
-    fun bindPlace(place: PlaceInformation) {
+    fun bindPlace(place: Place) {
         _place.value = place
     }
 
@@ -96,6 +105,38 @@ class WriteStoryViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 _places.value = ApiState.Error(e)
+            }
+        }
+    }
+
+    fun registerStory(body: String) {
+        viewModelScope.launch {
+            try {
+                val contents = mutableListOf<Content>()
+                photos.value?.let {
+                    if(it.isNotEmpty()) {
+                        it.forEach { photo ->
+                            contents.add(Content(photo, Constant.PHOTO_CONTENT))
+                        }
+                    }
+                }
+
+                videos.value?.let {
+                    if(it.isNotEmpty()) {
+                        it.forEach { video ->
+                            contents.add(Content(video.uri, Constant.VIDEO_CONTENT))
+                        }
+                    }
+                }
+
+                val place = place.value ?: Place()
+                val date = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault()).format(Calendar.getInstance().time)
+
+                _registerStoryState.value = ApiState.Loading
+                val response = registerStoryUseCase(body, contents, place, date)
+                _registerStoryState.value = ApiState.Success(response)
+            } catch (e: Exception) {
+                _registerStoryState.value = ApiState.Error(e)
             }
         }
     }

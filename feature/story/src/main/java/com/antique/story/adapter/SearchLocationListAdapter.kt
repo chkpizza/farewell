@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.antique.story.R
-import com.antique.story.data.place.PlaceInformation
+import com.antique.story.data.story.Place
 import com.antique.story.databinding.ListItemSearchLocationBinding
 
 class SearchLocationListAdapter(
-    private val onItemClickListener: (PlaceInformation) -> Unit
-) : ListAdapter<PlaceInformation, SearchLocationListAdapter.SearchPlaceListViewHolder>(diffUtil) {
+    private val onItemClickListener: (Place) -> Unit
+) : ListAdapter<Place, SearchLocationListAdapter.SearchPlaceListViewHolder>(diffUtil) {
     inner class SearchPlaceListViewHolder(private val binding: ListItemSearchLocationBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: PlaceInformation) {
+        fun bind(item: Place) {
             binding.placeNameView.text = item.placeName
             binding.placeAddressNameView.text = item.placeAddress
             binding.root.setOnClickListener {
@@ -24,12 +24,12 @@ class SearchLocationListAdapter(
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<PlaceInformation>() {
-            override fun areItemsTheSame(oldItem: PlaceInformation, newItem: PlaceInformation): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<Place>() {
+            override fun areItemsTheSame(oldItem: Place, newItem: Place): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: PlaceInformation, newItem: PlaceInformation): Boolean {
+            override fun areContentsTheSame(oldItem: Place, newItem: Place): Boolean {
                 return oldItem == newItem
             }
 
