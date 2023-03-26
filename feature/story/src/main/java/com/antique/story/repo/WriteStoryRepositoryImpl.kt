@@ -1,13 +1,13 @@
 package com.antique.story.repo
 
-import android.webkit.MimeTypeMap
 import androidx.core.net.toUri
 import com.antique.common.util.Constant
 import com.antique.story.data.place.PlaceResponse
-import com.antique.story.data.story.Content
+import com.antique.story.data.story.story.Content
 import com.antique.story.data.story.Place
-import com.antique.story.data.story.Story
+import com.antique.story.data.story.story.Story
 import com.antique.story.retrofit.PlaceApiService
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -50,8 +50,10 @@ class WriteStoryRepositoryImpl @Inject constructor(
         val storyId = Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).push().key.toString()
         val story = Story(body, contentList, place, date, storyId)
 
-        Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).child(storyId).setValue(story).await()
-        Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).child(storyId).get().await().getValue(Story::class.java)?.let {
+        val uid = Firebase.auth.currentUser?.uid.toString()
+        Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).child(uid).child(storyId).setValue(story).await()
+        Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).child(uid).child(storyId).get().await().getValue(
+            Story::class.java)?.let {
             it
         } ?: throw RuntimeException()
     }

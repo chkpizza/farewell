@@ -7,16 +7,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.antique.story.R
+import com.antique.story.data.story.story.StoryUiState
 import com.antique.story.databinding.ListItemStoryBinding
 import com.bumptech.glide.Glide
 
 class StoryListAdapter(
-    private val onItemClickListener : (String) -> Unit
-) : ListAdapter<String, StoryListAdapter.StoryListViewHolder>(diffUtil) {
+    private val onItemClickListener : (StoryUiState) -> Unit
+) : ListAdapter<StoryUiState, StoryListAdapter.StoryListViewHolder>(diffUtil) {
     inner class StoryListViewHolder(private val binding: ListItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: String) {
+        fun bind(item: StoryUiState) {
             Glide.with(binding.storyPreviewView.context)
-                .load(item)
+                .load(item.contents[0].uri)
                 .into(binding.storyPreviewView)
 
             binding.root.setOnClickListener {
@@ -25,15 +26,19 @@ class StoryListAdapter(
         }
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return VIEW_TYPE
+    }
+
     companion object {
         const val VIEW_TYPE = 1002
 
-        val diffUtil = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<StoryUiState>() {
+            override fun areItemsTheSame(oldItem: StoryUiState, newItem: StoryUiState): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+            override fun areContentsTheSame(oldItem: StoryUiState, newItem: StoryUiState): Boolean {
                 return oldItem == newItem
             }
 

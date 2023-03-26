@@ -6,12 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.antique.common.util.ApiState
 import com.antique.common.util.Constant
-import com.antique.common.util.SingleEvent
-import com.antique.story.data.story.Video
-import com.antique.story.data.story.Content
+import com.antique.story.data.story.story.Video
+import com.antique.story.data.story.story.Content
 import com.antique.story.data.story.Place
 import com.antique.story.data.story.PlaceUiState
-import com.antique.story.data.story.StoryUiState
+import com.antique.story.data.story.story.StoryUiState
 import com.antique.story.usecase.GetLocationsUseCase
 import com.antique.story.usecase.RegisterStoryUseCase
 import kotlinx.coroutines.launch

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.antique.story.R
-import com.antique.story.data.story.Video
+import com.antique.story.data.story.story.Video
 import com.antique.story.databinding.ListItemVideoBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
