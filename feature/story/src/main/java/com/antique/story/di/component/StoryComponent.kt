@@ -18,9 +18,9 @@ interface StoryComponent {
     }
 
     fun inject(storyFragment: StoryFragment)
+    fun inject(storyDetailsFragment: StoryDetailsFragment)
     fun inject(writeStoryFragment: WriteStoryFragment)
     fun inject(photoGalleryFragment: PhotoGalleryFragment)
     fun inject(videoGalleryFragment: VideoGalleryFragment)
-    fun inject(searchLocationFragment: SearchLocationFragment
-    )
+    fun inject(searchLocationFragment: SearchLocationFragment)
 }

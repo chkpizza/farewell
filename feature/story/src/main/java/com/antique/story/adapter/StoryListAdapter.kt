@@ -16,9 +16,11 @@ class StoryListAdapter(
 ) : ListAdapter<StoryUiState, StoryListAdapter.StoryListViewHolder>(diffUtil) {
     inner class StoryListViewHolder(private val binding: ListItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: StoryUiState) {
-            Glide.with(binding.storyPreviewView.context)
-                .load(item.contents[0].uri)
-                .into(binding.storyPreviewView)
+            if(item.contents.isNotEmpty()) {
+                Glide.with(binding.storyPreviewView.context)
+                    .load(item.contents[0].uri)
+                    .into(binding.storyPreviewView)
+            }
 
             binding.root.setOnClickListener {
                 onItemClickListener(item)

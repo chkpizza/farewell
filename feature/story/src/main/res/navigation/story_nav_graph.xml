@@ -13,7 +13,19 @@
         <action
             android:id="@+id/action_storyFragment_to_write_story_nav_graph"
             app:destination="@id/write_story_nav_graph" />
+        <action
+            android:id="@+id/action_storyFragment_to_storyDetailsFragment"
+            app:destination="@id/storyDetailsFragment" />
     </fragment>
     <include app:graph="@navigation/write_story_nav_graph" />
+    <fragment
+        android:id="@+id/storyDetailsFragment"
+        android:name="com.antique.story.view.StoryDetailsFragment"
+        android:label="fragment_story_details"
+        tools:layout="@layout/fragment_story_details" >
+        <argument
+            android:name="storyId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
