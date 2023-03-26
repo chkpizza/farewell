@@ -17,7 +17,7 @@ class StoryRepositoryImpl @Inject constructor(private val dispatcher: CoroutineD
         val stories = mutableListOf<Story>()
         val uid = Firebase.auth.currentUser?.uid.toString()
 
-        val response = Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).child(uid).limitToLast(20).get().await()
+        val response = Firebase.database.reference.child(Constant.STORY_NODE).child(uid).limitToLast(20).get().await()
         response.children.forEach {
             it.getValue(Story::class.java)?.let { story ->
                 stories.add(story)
@@ -30,7 +30,7 @@ class StoryRepositoryImpl @Inject constructor(private val dispatcher: CoroutineD
         val stories = mutableListOf<Story>()
         val uid = Firebase.auth.currentUser?.uid.toString()
 
-        val response = Firebase.database.reference.child(Constant.STORY_NODE).child(Constant.USER_NODE).child(uid).orderByKey().endBefore(idx).limitToLast(20).get().await()
+        val response = Firebase.database.reference.child(Constant.STORY_NODE).child(uid).orderByKey().endBefore(idx).limitToLast(20).get().await()
         response.children.forEach {
             it.getValue(Story::class.java)?.let { story ->
                 stories.add(story)
@@ -50,5 +50,16 @@ class StoryRepositoryImpl @Inject constructor(private val dispatcher: CoroutineD
         } ?: throw RuntimeException()
 
         Door(nickName, doorText)
+    }
+
+    override suspend fun getStory(storyId: String): Story = withContext(dispatcher) {
+        val uid = Firebase.auth.currentUser?.uid.toString()
+        Firebase.database.reference.child(Constant.STORY_NODE).child(uid).child(storyId).get().await().getValue(Story::class.java) ?: throw RuntimeException()
+    }
+
+    override suspend fun removeStory(storyId: String): Boolean = withContext(dispatcher) {
+        val uid = Firebase.auth.currentUser?.uid.toString()
+        Firebase.database.reference.child(Constant.STORY_NODE).child(uid).child(storyId).setValue(null).await()
+        !Firebase.database.reference.child(Constant.STORY_NODE).child(uid).child(storyId).get().await().exists()
     }
 }

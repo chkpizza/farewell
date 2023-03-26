@@ -1,5 +1,6 @@
 package com.antique.story.di.component
 
+import com.antique.story.di.module.StoryDetailsViewModelModule
 import com.antique.story.di.module.StoryViewModelModule
 import com.antique.story.di.module.WriteStoryViewModelModule
 import com.antique.story.view.*
@@ -8,7 +9,8 @@ import dagger.Subcomponent
 @Subcomponent(
     modules = [
         StoryViewModelModule::class,
-        WriteStoryViewModelModule::class
+        WriteStoryViewModelModule::class,
+        StoryDetailsViewModelModule::class
     ]
 )
 interface StoryComponent {

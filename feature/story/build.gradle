@@ -79,5 +79,9 @@ dependencies {
     implementation(ThirdParty.RETROFIT_CONVERTER)
     implementation(Google.GSON)
 
-
+    implementation(Google.EXOPLAYER_CORE)
+    implementation(Google.EXOPLAYER_DASH)
+    implementation(Google.EXOPLAYER_HLS)
+    implementation(Google.EXOPLAYER_SMOOTH_STREAMING)
+    implementation(Google.EXOPLAYER_UI)
 }
