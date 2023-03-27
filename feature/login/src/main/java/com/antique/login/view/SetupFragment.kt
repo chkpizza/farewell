@@ -74,10 +74,10 @@ class SetupFragment : Fragment() {
                 s?.let {
                     if(s.isNotEmpty()) {
                         binding.registerUserView.isEnabled = true
-                        binding.registerUserView.background = AppCompatResources.getDrawable(requireActivity(), R.drawable.shape_enable_button)
+                        binding.registerUserView.background = AppCompatResources.getDrawable(requireActivity(), com.antique.common.R.drawable.shape_enable_button)
                     } else {
                         binding.registerUserView.isEnabled = false
-                        binding.registerUserView.background = AppCompatResources.getDrawable(requireActivity(), R.drawable.shape_enable_button)
+                        binding.registerUserView.background = AppCompatResources.getDrawable(requireActivity(), com.antique.common.R.drawable.shape_enable_button)
                     }
                 }
             }

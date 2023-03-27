@@ -24,19 +24,19 @@ class PhotoListAdapter(
                 .into(binding.galleryImageView)
 
             if(selectedImages.contains(item)) {
-                binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.orange))
+                binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.orange))
             } else {
-                binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.white))
+                binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.white))
             }
 
             binding.root.setOnClickListener {
                 if(selectedImages.contains(item)) {
                     selectedImages.remove(item)
-                    binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.white))
+                    binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.white))
                     onItemClickListener(selectedImages.size)
                 } else {
                     if(selectedImages.size < 3) {
-                        binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.orange))
+                        binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.orange))
                         selectedImages.add(item)
                         onItemClickListener(selectedImages.size)
                     } else {

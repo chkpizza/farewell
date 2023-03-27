@@ -2,6 +2,8 @@ package com.antique.farewell.di.module
 
 import com.antique.login.repo.AuthRepository
 import com.antique.login.repo.AuthRepositoryImpl
+import com.antique.settings.repo.SettingsRepository
+import com.antique.settings.repo.SettingsRepositoryImpl
 import com.antique.story.repo.StoryRepository
 import com.antique.story.repo.StoryRepositoryImpl
 import com.antique.story.repo.WriteStoryRepository
@@ -37,5 +39,11 @@ class RepositoryModule {
     @Provides
     fun provideStoryRepository(dispatcher: CoroutineDispatcher): StoryRepository {
         return StoryRepositoryImpl(dispatcher)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSettingsRepository(dispatcher: CoroutineDispatcher): SettingsRepository {
+        return SettingsRepositoryImpl(dispatcher)
     }
 }

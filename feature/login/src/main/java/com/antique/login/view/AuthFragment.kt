@@ -94,10 +94,10 @@ class AuthFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 s?.let {
                     if(it.length >= 11) {
-                        binding.requestCertificationNumberView.background = AppCompatResources.getDrawable(requireActivity(), R.drawable.shape_enable_button)
+                        binding.requestCertificationNumberView.background = AppCompatResources.getDrawable(requireActivity(), com.antique.common.R.drawable.shape_enable_button)
                         binding.requestCertificationNumberView.isEnabled = true
                     } else {
-                        binding.requestCertificationNumberView.background = AppCompatResources.getDrawable(requireActivity(), R.drawable.shape_disable_button)
+                        binding.requestCertificationNumberView.background = AppCompatResources.getDrawable(requireActivity(), com.antique.common.R.drawable.shape_disable_button)
                         binding.requestCertificationNumberView.isEnabled = false
                     }
                 }
@@ -112,12 +112,12 @@ class AuthFragment : Fragment() {
                 s?.let {
                     if(it.length >= 6) {
                         binding.confirmCertificationNumberView.background = AppCompatResources.getDrawable(requireActivity(),
-                            R.drawable.shape_enable_button
+                            com.antique.common.R.drawable.shape_enable_button
                         )
                         binding.confirmCertificationNumberView.isEnabled = true
                     } else {
                         binding.confirmCertificationNumberView.background = AppCompatResources.getDrawable(requireActivity(),
-                            R.drawable.shape_disable_button
+                            com.antique.common.R.drawable.shape_disable_button
                         )
                         binding.confirmCertificationNumberView.isEnabled = false
                     }

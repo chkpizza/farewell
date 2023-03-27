@@ -1,4 +1,15 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings_toolbar_view_text">설정</string>
+    <string name="edit_profile_view_text">프로필 수정</string>
+    <string name="privacy_policy_view_text">개인정보처리방침</string>
+    <string name="open_source_license_view_text">오픈소스 라이선스</string>
+    <string name="sign_out_view_text">로그아웃</string>
+    <string name="edit_profile_toolbar_text">프로필 수정</string>
+    <string name="edit_profile_hint_text">변경하실 닉네임을 입력해주세요</string>
+    <string name="edit_profile_title_text">닉네임 변경</string>
+    <string name="edit_profile_submit_view">변경하기</string>
+    <string name="change_nick_name_failure_text">닉네임을 변경하지 못했습니다</string>
+    <string name="change_nick_name_success_text">닉네임을 정상적으로 변경하였습니다</string>
 </resources>

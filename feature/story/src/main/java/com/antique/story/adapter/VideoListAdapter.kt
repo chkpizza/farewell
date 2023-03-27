@@ -30,19 +30,19 @@ class VideoListAdapter(
                 .into(binding.galleryVideoView)
 
             if(selectedVideos.contains(item)) {
-                binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.orange))
+                binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.orange))
             } else {
-                binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.white))
+                binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.white))
             }
 
             binding.root.setOnClickListener {
                 if(selectedVideos.contains(item)) {
                     selectedVideos.remove(item)
-                    binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.white))
+                    binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.white))
                     onItemClickListener(selectedVideos.size)
                 } else {
                     if(selectedVideos.size < 3) {
-                        binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.orange))
+                        binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.orange))
                         selectedVideos.add(item)
                         onItemClickListener(selectedVideos.size)
                     } else {

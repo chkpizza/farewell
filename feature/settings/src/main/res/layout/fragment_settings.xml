@@ -10,18 +10,132 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SettingsFragment">
+        tools:context=".view.SettingsFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <Button
-            android:id="@+id/sign_out_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="로그아웃"
-            android:layout_margin="30dp"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/settings_toolbar_view"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:text="@string/settings_toolbar_view_text"
+                android:textSize="16sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:id="@+id/settings_toolbar_divide_view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/settings_toolbar_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/gray_e9"/>
+
+        <TextView
+            android:id="@+id/edit_profile_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/settings_toolbar_divide_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/edit_profile_view_text"
+            android:textColor="@color/black"/>
+
+        <View
+            android:id="@+id/edit_profile_divide_view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_profile_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/gray_e9"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/privacy_policy_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edit_profile_divide_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/privacy_policy_view_text"
+            android:textColor="@color/black"/>
+
+        <View
+            android:id="@+id/privacy_policy_divide_view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/privacy_policy_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/gray_e9"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/open_source_license_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/privacy_policy_divide_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/open_source_license_view_text"
+            android:textColor="@color/black"/>
+
+        <View
+            android:id="@+id/open_source_license_divide_view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/open_source_license_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/gray_e9"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/sign_out_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/open_source_license_divide_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/sign_out_view_text"
+            android:textColor="@color/black"/>
+
+        <View
+            android:id="@+id/sign_out_divide_view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/sign_out_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/gray_e9"
+            android:layout_marginTop="16dp"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
