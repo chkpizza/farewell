@@ -1,5 +1,8 @@
 package com.antique.story.data.place
 
+import androidx.annotation.Keep
+
+@Keep
 data class Document(
     val address_name: String,
     val category_group_code: String,
