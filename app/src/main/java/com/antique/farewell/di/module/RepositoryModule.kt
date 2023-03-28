@@ -1,14 +1,14 @@
 package com.antique.farewell.di.module
 
-import com.antique.login.repo.AuthRepository
-import com.antique.login.repo.AuthRepositoryImpl
-import com.antique.settings.repo.SettingsRepository
-import com.antique.settings.repo.SettingsRepositoryImpl
-import com.antique.story.repo.StoryRepository
-import com.antique.story.repo.StoryRepositoryImpl
-import com.antique.story.repo.WriteStoryRepository
-import com.antique.story.repo.WriteStoryRepositoryImpl
-import com.antique.story.retrofit.PlaceApiService
+import com.antique.login.data.repo.AuthRepository
+import com.antique.login.data.repo.AuthRepositoryImpl
+import com.antique.settings.data.repo.SettingsRepository
+import com.antique.settings.data.repo.SettingsRepositoryImpl
+import com.antique.story.data.repo.StoryRepository
+import com.antique.story.data.repo.StoryRepositoryImpl
+import com.antique.story.data.repo.WriteStoryRepository
+import com.antique.story.data.repo.WriteStoryRepositoryImpl
+import com.antique.story.data.retrofit.PlaceApiService
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher

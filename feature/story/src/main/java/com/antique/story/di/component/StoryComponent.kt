@@ -3,7 +3,7 @@ package com.antique.story.di.component
 import com.antique.story.di.module.StoryDetailsViewModelModule
 import com.antique.story.di.module.StoryViewModelModule
 import com.antique.story.di.module.WriteStoryViewModelModule
-import com.antique.story.view.*
+import com.antique.story.presentation.view.*
 import dagger.Subcomponent
 
 @Subcomponent(

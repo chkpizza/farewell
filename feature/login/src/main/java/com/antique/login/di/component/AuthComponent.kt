@@ -1,10 +1,10 @@
 package com.antique.login.di.component
 
 import com.antique.login.di.module.AuthViewModelModule
-import com.antique.login.view.AuthFragment
-import com.antique.login.view.OnBoardingFragment
-import com.antique.login.view.SetupFragment
-import com.antique.login.view.WithdrawnCancelFragment
+import com.antique.login.presentation.view.AuthFragment
+import com.antique.login.presentation.view.OnBoardingFragment
+import com.antique.login.presentation.view.SetupFragment
+import com.antique.login.presentation.view.WithdrawnCancelFragment
 import dagger.Subcomponent
 
 @Subcomponent(modules = [AuthViewModelModule::class])

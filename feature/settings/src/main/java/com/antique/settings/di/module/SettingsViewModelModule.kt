@@ -2,7 +2,7 @@ package com.antique.settings.di.module
 
 import androidx.lifecycle.ViewModel
 import com.antique.common.di.ViewModelKey
-import com.antique.settings.viewmodel.SettingsViewModel
+import com.antique.settings.presentation.viewmodel.SettingsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

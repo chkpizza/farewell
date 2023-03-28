@@ -4,25 +4,17 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.antique.common.data.User
-import com.antique.common.util.Constant
 import com.antique.farewell.R
 import com.antique.farewell.databinding.ActivityMainBinding
-import com.antique.settings.OnSignOutListener
+import com.antique.settings.presentation.OnSignOutListener
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.tasks.await
 
 class MainActivity : AppCompatActivity(), OnSignOutListener {
     private lateinit var binding: ActivityMainBinding

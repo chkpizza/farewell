@@ -1,6 +1,6 @@
 package com.antique.farewell.di.module
 
-import com.antique.story.retrofit.PlaceApiService
+import com.antique.story.data.retrofit.PlaceApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

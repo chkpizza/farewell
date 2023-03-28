@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/storyFragment"
-        android:name="com.antique.story.view.StoryFragment"
+        android:name="com.antique.story.presentation.view.StoryFragment"
         android:label="fragment_story"
         tools:layout="@layout/fragment_story" >
         <action
@@ -20,7 +20,7 @@
     <include app:graph="@navigation/write_story_nav_graph" />
     <fragment
         android:id="@+id/storyDetailsFragment"
-        android:name="com.antique.story.view.StoryDetailsFragment"
+        android:name="com.antique.story.presentation.view.StoryDetailsFragment"
         android:label="fragment_story_details"
         tools:layout="@layout/fragment_story_details" >
         <argument
