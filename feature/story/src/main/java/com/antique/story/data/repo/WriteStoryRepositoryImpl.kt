@@ -2,9 +2,9 @@ package com.antique.story.data.repo
 
 import androidx.core.net.toUri
 import com.antique.common.util.Constant
+import com.antique.story.data.model.place.Place
 import com.antique.story.data.model.place.PlaceResponse
 import com.antique.story.data.model.story.story.Content
-import com.antique.story.data.model.story.story.Place
 import com.antique.story.data.model.story.story.Story
 import com.antique.story.data.retrofit.PlaceApiService
 import com.google.firebase.auth.ktx.auth

@@ -21,6 +21,7 @@ class VideoListAdapter(
 
     inner class VideoListViewHolder(private val binding: ListItemVideoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Video) {
+            /*
             val second = (item.duration / 1000)
             val decimalFormat = DecimalFormat("00")
             binding.videoDurationView.text = "${decimalFormat.format(second / 60)} : ${decimalFormat.format(second % 60)}"
@@ -28,7 +29,8 @@ class VideoListAdapter(
             Glide.with(binding.galleryVideoView.context)
                 .load(item.uri)
                 .into(binding.galleryVideoView)
-
+            */
+            binding.video = item
             if(selectedVideos.contains(item)) {
                 binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.orange))
             } else {

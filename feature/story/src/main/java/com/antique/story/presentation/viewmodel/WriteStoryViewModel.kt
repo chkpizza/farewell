@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.antique.common.util.ApiState
 import com.antique.common.util.Constant
+import com.antique.story.data.model.place.Place
 import com.antique.story.data.model.story.story.Video
 import com.antique.story.data.model.story.story.Content
-import com.antique.story.data.model.story.story.Place
-import com.antique.story.data.model.story.story.PlaceUiState
+import com.antique.story.data.model.place.PlaceUiState
 import com.antique.story.data.model.story.story.StoryUiState
 import com.antique.story.domain.usecase.GetLocationsUseCase
 import com.antique.story.domain.usecase.RegisterStoryUseCase

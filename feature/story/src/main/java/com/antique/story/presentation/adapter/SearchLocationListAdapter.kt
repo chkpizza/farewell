@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.antique.story.R
-import com.antique.story.data.model.story.story.Place
+import com.antique.story.data.model.place.Place
 import com.antique.story.databinding.ListItemSearchLocationBinding
 
 class SearchLocationListAdapter(
@@ -15,8 +15,8 @@ class SearchLocationListAdapter(
 ) : ListAdapter<Place, SearchLocationListAdapter.SearchPlaceListViewHolder>(diffUtil) {
     inner class SearchPlaceListViewHolder(private val binding: ListItemSearchLocationBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Place) {
-            binding.placeNameView.text = item.placeName
-            binding.placeAddressNameView.text = item.placeAddress
+            binding.place = item
+
             binding.root.setOnClickListener {
                 onItemClickListener(item)
             }

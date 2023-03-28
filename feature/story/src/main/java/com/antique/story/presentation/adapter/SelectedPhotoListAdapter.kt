@@ -15,10 +15,7 @@ class SelectedPhotoListAdapter(
 ) : ListAdapter<String, SelectedPhotoListAdapter.SelectedPhotoListViewHolder>(diffUtil) {
     inner class SelectedPhotoListViewHolder(private val binding: ListItemSelectedPhotoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) {
-            Glide.with(binding.photoView.context)
-                .load(item)
-                .into(binding.photoView)
-
+            binding.url = item
             binding.removePhotoView.setOnClickListener {
                 onItemClickListener(item)
             }

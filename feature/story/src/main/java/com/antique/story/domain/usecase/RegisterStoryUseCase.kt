@@ -1,7 +1,7 @@
 package com.antique.story.domain.usecase
 
+import com.antique.story.data.model.place.Place
 import com.antique.story.data.model.story.story.Content
-import com.antique.story.data.model.story.story.Place
 import com.antique.story.data.model.story.story.Story
 import com.antique.story.data.model.story.story.StoryUiState
 import com.antique.story.data.repo.WriteStoryRepository

@@ -1,8 +1,8 @@
 package com.antique.story.domain.usecase
 
+import com.antique.story.data.model.place.Place
 import com.antique.story.data.model.place.PlaceResponse
-import com.antique.story.data.model.story.story.Place
-import com.antique.story.data.model.story.story.PlaceUiState
+import com.antique.story.data.model.place.PlaceUiState
 import com.antique.story.data.repo.WriteStoryRepository
 import javax.inject.Inject
 

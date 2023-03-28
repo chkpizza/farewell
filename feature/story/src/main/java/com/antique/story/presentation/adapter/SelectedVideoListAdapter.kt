@@ -17,14 +17,7 @@ class SelectedVideoListAdapter(
 ) : ListAdapter<Video, SelectedVideoListAdapter.SelectedVideoListViewHolder>(diffUtil) {
     inner class SelectedVideoListViewHolder(private val binding: ListItemSelectedVideoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Video) {
-            val second = (item.duration / 1000)
-            val decimalFormat = DecimalFormat("00")
-            binding.videoDurationView.text = "${decimalFormat.format(second / 60)} : ${decimalFormat.format(second % 60)}"
-
-            Glide.with(binding.videoView.context)
-                .load(item.uri)
-                .into(binding.videoView)
-
+            binding.video = item
             binding.removeVideoView.setOnClickListener {
                 onItemClickListener(item)
             }

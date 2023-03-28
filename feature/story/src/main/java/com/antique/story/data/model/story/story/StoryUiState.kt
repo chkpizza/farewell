@@ -1,6 +1,7 @@
 package com.antique.story.data.model.story.story
 
 import androidx.annotation.Keep
+import com.antique.story.data.model.place.Place
 
 @Keep
 data class StoryUiState(

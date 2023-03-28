@@ -13,8 +13,7 @@ import com.antique.story.databinding.ItemDoorBinding
 class DoorAdapter : ListAdapter<DoorUiState, DoorAdapter.DoorViewHolder>(diffUtil) {
     inner class DoorViewHolder(private val binding: ItemDoorBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DoorUiState) {
-            binding.doorNickNameView.text = item.nickName
-            binding.doorTitleView.text = item.doorText
+            binding.door = item
         }
     }
     companion object {

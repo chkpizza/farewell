@@ -19,9 +19,13 @@ class PhotoListAdapter(
 
     inner class PhotoListViewHolder(private val binding: ListItemPhotoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) {
+            /*
             Glide.with(binding.galleryImageView.context)
                 .load(item)
                 .into(binding.galleryImageView)
+            */
+
+            binding.url = item
 
             if(selectedImages.contains(item)) {
                 binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.orange))

@@ -23,4 +23,5 @@
     <string name="remove_story_menu_text">삭제하기</string>
     <string name="load_story_details_failure_text">스토리를 불러오지 못했습니다</string>
     <string name="remove_story_failure_text">스토리를 삭제하지 못했습니다</string>
+    <string name="duration_format">%02d : %02d</string>
 </resources>
