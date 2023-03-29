@@ -5,7 +5,7 @@ import com.antique.farewell.di.module.RetrofitModule
 import com.antique.farewell.di.module.ViewModelFactoryModule
 import com.antique.login.di.component.AuthComponent
 import com.antique.settings.di.component.SettingsComponent
-import com.antique.story.presentation.di.StoryComponent
+import com.antique.story.di.StoryComponent
 import dagger.Component
 import dagger.Module
 import javax.inject.Singleton

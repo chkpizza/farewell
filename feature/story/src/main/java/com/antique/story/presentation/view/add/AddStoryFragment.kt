@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.antique.common.util.ViewInsetsCallback
 import com.antique.story.R
 import com.antique.story.databinding.FragmentAddStoryBinding
-import com.antique.story.presentation.di.StoryComponentProvider
+import com.antique.story.di.StoryComponentProvider
 import javax.inject.Inject
 
 
@@ -34,6 +34,7 @@ class AddStoryFragment : Fragment() {
 
     private lateinit var registerStory: MenuItem
     private lateinit var selectedPictureListAdapter: SelectedPictureListAdapter
+    private lateinit var selectedVideoListAdapter: SelectedVideoListAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -92,11 +93,21 @@ class AddStoryFragment : Fragment() {
         }
         binding.selectedPictureListView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.selectedPictureListView.adapter = selectedPictureListAdapter
+
+        selectedVideoListAdapter = SelectedVideoListAdapter {
+            addStoryViewModel.removeVideo(it)
+        }
+        binding.selectedVideoListView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.selectedVideoListView.adapter = selectedVideoListAdapter
     }
 
     private fun setupViewListener() {
         binding.addPictureView.setOnClickListener {
             findNavController().navigate(R.id.action_addStoryFragment_to_pictureFragment)
+        }
+
+        binding.addVideoView.setOnClickListener {
+            findNavController().navigate(R.id.action_addStoryFragment_to_videoFragment)
         }
 
         binding.inputBodyView.addTextChangedListener(object : TextWatcher {

@@ -1,4 +1,4 @@
-package com.antique.story.presentation.view.picture
+package com.antique.story.presentation.view.video
 
 import android.Manifest
 import android.content.ContentUris
@@ -22,24 +22,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.antique.story.R
-import com.antique.story.databinding.FragmentPictureBinding
+import com.antique.story.databinding.FragmentVideoBinding
 import com.antique.story.di.StoryComponentProvider
 import com.antique.story.presentation.view.add.AddStoryViewModel
+import com.antique.story.presentation.view.picture.PictureListAdapter
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class PictureFragment : Fragment() {
-    private var _binding: FragmentPictureBinding? = null
+class VideoFragment : Fragment() {
+    private var _binding: FragmentVideoBinding? = null
     private val binding get() = _binding!!
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private val addStoryViewModel by navGraphViewModels<AddStoryViewModel>(R.id.add_story_nav_graph) { viewModelFactory }
-
-    private lateinit var pictureComplete: MenuItem
-    private lateinit var pictureListAdapter: PictureListAdapter
+    private lateinit var videoComplete: MenuItem
+    private lateinit var videoListAdapter: VideoListAdapter
 
     private val storagePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
         if(isGranted) {
-            loadImages()
+            loadVideos()
         } else {
             findNavController().navigateUp()
         }
@@ -54,12 +55,13 @@ class PictureFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_picture, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_video, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initialize()
     }
 
@@ -80,14 +82,14 @@ class PictureFragment : Fragment() {
     }
 
     private fun setupMenu() {
-        binding.selectImageToolbarView.inflateMenu(R.menu.menu_picture)
-        pictureComplete = binding.selectImageToolbarView.menu.findItem(R.id.picture_complete)
-        pictureComplete.isEnabled = false
+        binding.videoToolbarView.inflateMenu(R.menu.menu_picture)
+        videoComplete = binding.videoToolbarView.menu.findItem(R.id.picture_complete)
+        videoComplete.isEnabled = false
 
-        binding.selectImageToolbarView.setOnMenuItemClickListener {
+        binding.videoToolbarView.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.picture_complete -> {
-                    addStoryViewModel.setPictures(pictureListAdapter.getSelectedPictures())
+                    addStoryViewModel.setVideos(videoListAdapter.getSelectedVideos())
                     findNavController().navigateUp()
                     true
                 }
@@ -97,52 +99,57 @@ class PictureFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        pictureListAdapter = PictureListAdapter {
-            pictureComplete.isEnabled = it > 0
+        videoListAdapter = VideoListAdapter {
+            videoComplete.isEnabled = it > 0
         }
-        binding.pictureListView.layoutManager = GridLayoutManager(requireActivity(), 3)
-        binding.pictureListView.adapter = pictureListAdapter
+        binding.videoListView.layoutManager = GridLayoutManager(requireActivity(), 3)
+        binding.videoListView.adapter = videoListAdapter
     }
 
     private fun setupPermissions() {
         if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            loadImages()
+            loadVideos()
         } else {
             storagePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    private fun loadImages() {
+    private fun loadVideos() {
         val collection = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+            MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
         } else {
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            MediaStore.Video.Media.EXTERNAL_CONTENT_URI
         }
 
-        val projection = arrayOf(MediaStore.Images.Media._ID)
+        val projection = arrayOf(MediaStore.Video.Media._ID)
+        val selection = "${MediaStore.Video.Media.DURATION} <= ?"
+        val selectionArgs = arrayOf(TimeUnit.MILLISECONDS.convert(3, TimeUnit.MINUTES).toString())
+
         val cursor = requireActivity().contentResolver.query(
             collection,
             projection,
-            null,
-            null,
-            MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC"
+            selection,
+            selectionArgs,
+            MediaStore.Video.VideoColumns.DATE_TAKEN + " DESC"
         )
 
-        val pictures = mutableListOf<String>()
+        val videos = mutableListOf<String>()
 
         cursor?.let {
-            val columnIdx = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
+            val idColumnIdx = cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID)
             while(cursor.moveToNext()) {
-                val uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(columnIdx))
-                pictures.add(uri.toString())
+                val contentUri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, cursor.getLong(idColumnIdx))
+
+                videos.add(contentUri.toString())
             }
             it.close()
         }
-        binding.uris = pictures
+
+        binding.uris = videos
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

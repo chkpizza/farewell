@@ -10,7 +10,10 @@
     <string name="add_video_view_text">동영상</string>
     <string name="add_place_view_text">장소</string>
     <string name="picture_toolbar_text">사진</string>
+    <string name="video_toolbar_text">동영상</string>
     <string name="picture_complete_menu_text">선택하기</string>
+    <string name="video_complete_menu_text">선택하기</string>
     <string name="register_story_menu_text">등록하기</string>
     <string name="picture_limit_warning_text">사진은 최대 3개까지 선택가능합니다</string>
+    <string name="video_limit_warning_text">동영상은 최대 3개까지 선택가능합니다</string>
 </resources>

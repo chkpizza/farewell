@@ -11,9 +11,16 @@
         <action
             android:id="@+id/action_addStoryFragment_to_pictureFragment"
             app:destination="@id/pictureFragment" />
+        <action
+            android:id="@+id/action_addStoryFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
     </fragment>
     <fragment
         android:id="@+id/pictureFragment"
         android:name="com.antique.story.presentation.view.picture.PictureFragment"
         android:label="PictureFragment" />
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.antique.story.presentation.view.video.VideoFragment"
+        android:label="VideoFragment" />
 </navigation>

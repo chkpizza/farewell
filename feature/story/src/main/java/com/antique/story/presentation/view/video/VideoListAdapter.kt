@@ -1,4 +1,4 @@
-package com.antique.story.presentation.view.picture
+package com.antique.story.presentation.view.video
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,49 +11,49 @@ import com.antique.story.R
 import com.antique.story.databinding.ListItemGalleryBinding
 import com.google.android.material.snackbar.Snackbar
 
-class PictureListAdapter(
+class VideoListAdapter(
     private val onItemClickListener: (Int) -> Unit
-) : ListAdapter<String, PictureListAdapter.PictureListViewHolder>(diffUtil) {
-    private val selectedPictures = mutableListOf<String>()
+) : ListAdapter<String, VideoListAdapter.VideoListViewHolder>(diffUtil) {
+    private val selectedVideos = mutableListOf<String>()
 
-    inner class PictureListViewHolder(private val binding: ListItemGalleryBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VideoListViewHolder(private val binding: ListItemGalleryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) {
             binding.url = item
 
-            if(selectedPictures.contains(item)) {
+            if(selectedVideos.contains(item)) {
                 binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.orange))
             } else {
                 binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.white))
             }
 
             binding.root.setOnClickListener {
-                if(selectedPictures.contains(item)) {
-                    selectedPictures.remove(item)
+                if(selectedVideos.contains(item)) {
+                    selectedVideos.remove(item)
                     binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.white))
-                    onItemClickListener(selectedPictures.size)
+                    onItemClickListener(selectedVideos.size)
                 } else {
-                    if(selectedPictures.size < 3) {
-                        selectedPictures.add(item)
+                    if(selectedVideos.size < 3) {
                         binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, com.antique.common.R.color.orange))
-                        onItemClickListener(selectedPictures.size)
+                        selectedVideos.add(item)
+                        onItemClickListener(selectedVideos.size)
                     } else {
-                        Snackbar.make(binding.root, binding.root.context.getString(R.string.picture_limit_warning_text), Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(binding.root, binding.root.context.getString(R.string.video_limit_warning_text), Snackbar.LENGTH_SHORT).show()
                     }
                 }
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PictureListViewHolder {
+    fun getSelectedVideos() = selectedVideos
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoListViewHolder {
         val binding = DataBindingUtil.inflate<ListItemGalleryBinding>(LayoutInflater.from(parent.context), R.layout.list_item_gallery, parent, false)
-        return PictureListViewHolder(binding)
+        return VideoListViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PictureListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: VideoListViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
-    fun getSelectedPictures() = selectedPictures
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<String>() {
@@ -64,6 +64,7 @@ class PictureListAdapter(
             override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
                 return oldItem == newItem
             }
+
         }
     }
 }

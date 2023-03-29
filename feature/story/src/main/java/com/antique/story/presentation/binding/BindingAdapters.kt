@@ -4,6 +4,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.antique.story.presentation.view.add.SelectedPictureListAdapter
+import com.antique.story.presentation.view.add.SelectedVideoListAdapter
+import com.antique.story.presentation.view.picture.PictureListAdapter
+import com.antique.story.presentation.view.video.VideoListAdapter
 import com.bumptech.glide.Glide
 
 object BindingAdapters {
@@ -18,6 +21,19 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("items")
     fun bindItems(recyclerView: RecyclerView, items: List<String>) {
-        (recyclerView.adapter as? SelectedPictureListAdapter)?.submitList(items)
+        when(recyclerView.adapter) {
+            is SelectedPictureListAdapter -> {
+                (recyclerView.adapter as SelectedPictureListAdapter).submitList(items)
+            }
+            is SelectedVideoListAdapter -> {
+                (recyclerView.adapter as SelectedVideoListAdapter).submitList(items)
+            }
+            is VideoListAdapter -> {
+                (recyclerView.adapter as VideoListAdapter).submitList(items)
+            }
+            is PictureListAdapter -> {
+                (recyclerView.adapter as PictureListAdapter).submitList(items)
+            }
+        }
     }
 }

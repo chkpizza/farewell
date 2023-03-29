@@ -9,6 +9,9 @@ class AddStoryViewModel @Inject constructor() : ViewModel() {
     private val _selectedPictures = MutableLiveData<List<String>>(emptyList())
     val selectedPictures: LiveData<List<String>> get() = _selectedPictures
 
+    private val _selectedVideos = MutableLiveData<List<String>>(emptyList())
+    val selectedVideos: LiveData<List<String>> get() = _selectedVideos
+
     fun setPictures(selectedPictures: List<String>) {
         _selectedPictures.value = selectedPictures
     }
@@ -16,6 +19,16 @@ class AddStoryViewModel @Inject constructor() : ViewModel() {
     fun removePicture(picture: String) {
         _selectedPictures.value?.let {
             _selectedPictures.value = it.filter { item -> item != picture }
+        }
+    }
+
+    fun setVideos(selectedVideos: List<String>) {
+        _selectedVideos.value = selectedVideos
+    }
+
+    fun removeVideo(video: String) {
+        _selectedVideos.value?.let {
+            _selectedVideos.value = it.filter { item -> item != video }
         }
     }
 }

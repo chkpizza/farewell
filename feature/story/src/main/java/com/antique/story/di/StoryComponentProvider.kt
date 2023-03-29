@@ -1,4 +1,4 @@
-package com.antique.story.presentation.di
+package com.antique.story.di
 
 interface StoryComponentProvider {
     fun provide(): StoryComponent

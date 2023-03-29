@@ -1,4 +1,4 @@
-package com.antique.story.presentation.di
+package com.antique.story.di
 
 import androidx.lifecycle.ViewModel
 import com.antique.common.di.ViewModelKey
