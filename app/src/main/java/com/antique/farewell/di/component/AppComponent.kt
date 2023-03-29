@@ -5,6 +5,7 @@ import com.antique.farewell.di.module.RetrofitModule
 import com.antique.farewell.di.module.ViewModelFactoryModule
 import com.antique.login.di.component.AuthComponent
 import com.antique.settings.di.component.SettingsComponent
+import com.antique.story.presentation.di.StoryComponent
 import dagger.Component
 import dagger.Module
 import javax.inject.Singleton
@@ -26,12 +27,14 @@ interface AppComponent {
 
     fun getAuthComponent(): AuthComponent.Factory
     fun getSettingsComponent(): SettingsComponent.Factory
+    fun getStoryComponent(): StoryComponent.Factory
 }
 
 @Module(
     subcomponents = [
         AuthComponent::class,
-        SettingsComponent::class
+        SettingsComponent::class,
+        StoryComponent::class
     ]
 )
 object SubcomponentsModule

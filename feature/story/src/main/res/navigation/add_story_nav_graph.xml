@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_story_nav_graph"
+    app:startDestination="@id/addStoryFragment">
+
+    <fragment
+        android:id="@+id/addStoryFragment"
+        android:name="com.antique.story.presentation.view.add.AddStoryFragment"
+        android:label="AddStoryFragment" >
+        <action
+            android:id="@+id/action_addStoryFragment_to_pictureFragment"
+            app:destination="@id/pictureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pictureFragment"
+        android:name="com.antique.story.presentation.view.picture.PictureFragment"
+        android:label="PictureFragment" />
+</navigation>

@@ -6,6 +6,11 @@
     app:startDestination="@id/storyFragment">
     <fragment
         android:id="@+id/storyFragment"
-        android:name="com.antique.story.presentation.view.StoryFragment"
-        android:label="StoryFragment" />
+        android:name="com.antique.story.presentation.view.main.StoryFragment"
+        android:label="StoryFragment" >
+        <action
+            android:id="@+id/action_storyFragment_to_add_story_nav_graph"
+            app:destination="@id/add_story_nav_graph" />
+    </fragment>
+    <include app:graph="@navigation/add_story_nav_graph" />
 </navigation>
