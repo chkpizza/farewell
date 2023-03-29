@@ -4,6 +4,8 @@ import com.antique.login.domain.repository.AuthRepository
 import com.antique.login.data.repository.AuthRepositoryImpl
 import com.antique.settings.data.repo.SettingsRepository
 import com.antique.settings.data.repo.SettingsRepositoryImpl
+import com.antique.story.data.repository.StoryRepositoryImpl
+import com.antique.story.domain.repository.StoryRepository
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
@@ -28,5 +30,11 @@ class RepositoryModule {
     @Provides
     fun provideSettingsRepository(dispatcher: CoroutineDispatcher): SettingsRepository {
         return SettingsRepositoryImpl(dispatcher)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStoryRepository(dispatcher: CoroutineDispatcher): StoryRepository {
+        return StoryRepositoryImpl(dispatcher)
     }
 }

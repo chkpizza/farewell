@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,7 @@ import com.antique.common.util.ViewInsetsCallback
 import com.antique.story.R
 import com.antique.story.databinding.FragmentAddStoryBinding
 import com.antique.story.di.StoryComponentProvider
+import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 
@@ -63,6 +65,7 @@ class AddStoryFragment : Fragment() {
         setupMenu()
         setupRecyclerView()
         setupViewListener()
+        setupObservers()
     }
 
     private fun setupInsets() {
@@ -77,7 +80,8 @@ class AddStoryFragment : Fragment() {
         binding.addStoryToolbarView.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.register_story -> {
-                    findNavController().navigateUp()
+                    binding.addStoryProgressView.isVisible = true
+                    addStoryViewModel.registerStory(binding.inputBodyView.text.toString())
                     true
                 }
                 else -> {
@@ -119,5 +123,20 @@ class AddStoryFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
         })
+    }
+
+    private fun setupObservers() {
+        addStoryViewModel.register.observe(viewLifecycleOwner) {
+            when(it) {
+                true -> {
+                    binding.addStoryProgressView.isVisible = false
+                    findNavController().navigateUp()
+                }
+                false -> {
+                    binding.addStoryProgressView.isVisible = false
+                    Snackbar.make(binding.root, getString(R.string.register_story_failure_text), Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }
