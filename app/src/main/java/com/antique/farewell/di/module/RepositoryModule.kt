@@ -4,10 +4,10 @@ import com.antique.login.data.repo.AuthRepository
 import com.antique.login.data.repo.AuthRepositoryImpl
 import com.antique.settings.data.repo.SettingsRepository
 import com.antique.settings.data.repo.SettingsRepositoryImpl
-import com.antique.story.data.repo.StoryRepository
-import com.antique.story.data.repo.StoryRepositoryImpl
-import com.antique.story.data.repo.WriteStoryRepository
-import com.antique.story.data.repo.WriteStoryRepositoryImpl
+import com.antique.story.domain.repository.StoryRepository
+import com.antique.story.data.repository.StoryRepositoryImpl
+import com.antique.story.domain.repository.WriteStoryRepository
+import com.antique.story.data.repository.WriteStoryRepositoryImpl
 import com.antique.story.data.retrofit.PlaceApiService
 import dagger.Module
 import dagger.Provides

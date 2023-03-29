@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/writeStoryFragment"
-        android:name="com.antique.story.presentation.view.WriteStoryFragment"
+        android:name="com.antique.story.presentation.view.write.WriteStoryFragment"
         android:label="WriteStoryFragment" >
         <action
             android:id="@+id/action_writeStoryFragment_to_videoGalleryFragment"
@@ -20,14 +20,14 @@
     </fragment>
     <fragment
         android:id="@+id/photoGalleryFragment"
-        android:name="com.antique.story.presentation.view.PhotoGalleryFragment"
+        android:name="com.antique.story.presentation.view.photo.PhotoGalleryFragment"
         android:label="PhotoGalleryFragment" />
     <fragment
         android:id="@+id/videoGalleryFragment"
-        android:name="com.antique.story.presentation.view.VideoGalleryFragment"
+        android:name="com.antique.story.presentation.view.video.VideoGalleryFragment"
         android:label="VideoGalleryFragment" />
     <fragment
         android:id="@+id/searchLocationFragment"
-        android:name="com.antique.story.presentation.view.SearchLocationFragment"
+        android:name="com.antique.story.presentation.view.location.SearchLocationFragment"
         android:label="SearchLocationFragment" />
 </navigation>
