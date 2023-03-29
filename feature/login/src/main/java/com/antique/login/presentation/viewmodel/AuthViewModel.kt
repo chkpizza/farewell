@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.antique.common.util.SingleEvent
-import com.antique.common.data.UserUiState
+import com.antique.common.data.User
 import com.antique.login.domain.usecase.IsExistUserUseCase
 import com.antique.login.domain.usecase.IsWithdrawnUserUseCase
 import com.antique.login.domain.usecase.RegisterUserUseCase
@@ -81,7 +81,7 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().time)
-                val response = registerUserUseCase(UserUiState(uid, nickName, "", date))
+                val response = registerUserUseCase(User(uid, nickName, "", date))
                 _navigateToMain.value = SingleEvent(response)
             } catch (_: Exception) { }
         }

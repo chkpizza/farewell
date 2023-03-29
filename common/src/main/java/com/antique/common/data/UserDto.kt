@@ -3,7 +3,7 @@ package com.antique.common.data
 import androidx.annotation.Keep
 
 @Keep
-data class UserUiState(
+data class UserDto(
     val uid: String,
     val nickName: String,
     val profileImageUrl: String,

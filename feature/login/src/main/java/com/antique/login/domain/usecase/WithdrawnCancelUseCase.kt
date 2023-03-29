@@ -1,6 +1,6 @@
 package com.antique.login.domain.usecase
 
-import com.antique.login.data.repo.AuthRepository
+import com.antique.login.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class WithdrawnCancelUseCase @Inject constructor(private val authRepository: AuthRepository) {

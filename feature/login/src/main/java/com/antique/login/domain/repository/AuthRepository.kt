@@ -1,4 +1,4 @@
-package com.antique.login.data.repo
+package com.antique.login.domain.repository
 
 import com.antique.common.data.User
 

@@ -1,7 +1,7 @@
 package com.antique.farewell.di.module
 
-import com.antique.login.data.repo.AuthRepository
-import com.antique.login.data.repo.AuthRepositoryImpl
+import com.antique.login.domain.repository.AuthRepository
+import com.antique.login.data.repository.AuthRepositoryImpl
 import com.antique.settings.data.repo.SettingsRepository
 import com.antique.settings.data.repo.SettingsRepositoryImpl
 import dagger.Module
