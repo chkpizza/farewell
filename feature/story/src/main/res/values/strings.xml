@@ -1,27 +1,4 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="door_nick_name_sub_view_text">님의 스토리</string>
-    <string name="story_toolbar_view_text">내스토리</string>
-    <string name="add_photo_view_text">사진</string>
-    <string name="add_video_view_text">동영상</string>
-    <string name="add_location_view_text">장소</string>
-    <string name="register_story_menu_text">등록하기</string>
-    <string name="input_story_view_hint_text">부모님과의 추억을 글로 남겨보세요!</string>
-    <string name="write_story_toolbar_text">스토리 작성</string>
-    <string name="photo_gallery_toolbar_view_text">사진선택</string>
-    <string name="video_gallery_toolbar_view_text">동영상선택</string>
-    <string name="select_photo_menu_text">선택하기</string>
-    <string name="select_video_menu_text">선택하기</string>
-    <string name="search_location_view_text">검색</string>
-    <string name="input_location_view_hint_text">장소 이름을 입력해주세요</string>
-    <string name="search_result_view_text">검색결과</string>
-    <string name="place_search_failure_text">해당 장소를 검색하지 못했습니다</string>
-    <string name="register_story_failure_text">스토리를 등록하지 못했습니다</string>
-    <string name="load_story_failure_text">스토리를 불러오지 못했습니다</string>
-    <string name="load_door_failure_text">내 스토리 대문을 읽어오지 못했습니다</string>
-    <string name="remove_story_menu_text">삭제하기</string>
-    <string name="load_story_details_failure_text">스토리를 불러오지 못했습니다</string>
-    <string name="remove_story_failure_text">스토리를 삭제하지 못했습니다</string>
-    <string name="duration_format">%02d : %02d</string>
-</resources>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string></resources>
