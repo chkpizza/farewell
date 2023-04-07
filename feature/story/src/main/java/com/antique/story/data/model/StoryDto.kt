@@ -1,5 +1,8 @@
 package com.antique.story.data.model
 
+import androidx.annotation.Keep
+
+@Keep
 data class StoryDto(
     val body: String? = null,
     val pictures: List<String>? = null,

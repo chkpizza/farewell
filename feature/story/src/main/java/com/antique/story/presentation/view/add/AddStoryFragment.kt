@@ -19,10 +19,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.antique.common.util.ApiState
 import com.antique.common.util.ViewInsetsCallback
 import com.antique.story.R
 import com.antique.story.databinding.FragmentAddStoryBinding
 import com.antique.story.di.StoryComponentProvider
+import com.antique.story.presentation.view.main.StoryViewModel
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
@@ -32,6 +34,7 @@ class AddStoryFragment : Fragment() {
     private val binding get() = _binding!!
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val storyViewModel by navGraphViewModels<StoryViewModel>(R.id.story_nav_graph) { viewModelFactory }
     private val addStoryViewModel by navGraphViewModels<AddStoryViewModel>(R.id.add_story_nav_graph) { viewModelFactory }
 
     private lateinit var registerStory: MenuItem
@@ -134,6 +137,7 @@ class AddStoryFragment : Fragment() {
     }
 
     private fun setupObservers() {
+        /*
         addStoryViewModel.register.observe(viewLifecycleOwner) {
             when(it) {
                 true -> {
@@ -143,6 +147,25 @@ class AddStoryFragment : Fragment() {
                 false -> {
                     binding.addStoryProgressView.isVisible = false
                     Snackbar.make(binding.root, getString(R.string.register_story_failure_text), Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+         */
+
+        addStoryViewModel.register.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiState.Success -> {
+                    binding.addStoryProgressView.isVisible = false
+                    storyViewModel.addNewStory(it.items)
+                    findNavController().navigateUp()
+                }
+                is ApiState.Error -> {
+                    binding.addStoryProgressView.isVisible = false
+                    Snackbar.make(binding.root, getString(R.string.register_story_failure_text), Snackbar.LENGTH_SHORT).show()
+                }
+                is ApiState.Loading -> {
+                    binding.addStoryProgressView.isVisible = true
                 }
             }
         }

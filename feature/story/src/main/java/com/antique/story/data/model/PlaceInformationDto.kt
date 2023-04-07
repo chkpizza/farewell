@@ -4,10 +4,8 @@ import androidx.annotation.Keep
 
 @Keep
 data class PlaceInformationDto(
-    val placeName: String,
-    val placeAddress: String,
-    val latitude: Double,
-    val longitude: Double
-) {
-    constructor() : this("", "", 0.0, 0.0)
-}
+    val placeName: String? = null,
+    val placeAddress: String? = null,
+    val latitude: Double? = null,
+    val longitude: Double? = null
+)

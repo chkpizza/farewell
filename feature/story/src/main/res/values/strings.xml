@@ -21,4 +21,7 @@
     <string name="search_result_view_text">검색결과</string>
     <string name="register_story_failure_text">게시글을 등록하지 못했습니다</string>
     <string name="place_search_failure_text">장소를 검색하지 못했습니다</string>
+    <string name="door_nick_name_sub_view_text">님의 스토리</string>
+    <string name="fetch_door_failure_text">대문글을 읽어오지 못했습니다</string>
+    <string name="fetch_story_failure_text">스토리를 읽어오지 못했습니다</string>
 </resources>
