@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_addStoryFragment_to_videoFragment"
             app:destination="@id/videoFragment" />
+        <action
+            android:id="@+id/action_addStoryFragment_to_placeFragment"
+            app:destination="@id/placeFragment" />
     </fragment>
     <fragment
         android:id="@+id/pictureFragment"
@@ -23,4 +26,8 @@
         android:id="@+id/videoFragment"
         android:name="com.antique.story.presentation.view.video.VideoFragment"
         android:label="VideoFragment" />
+    <fragment
+        android:id="@+id/placeFragment"
+        android:name="com.antique.story.presentation.view.place.PlaceFragment"
+        android:label="PlaceFragment" />
 </navigation>

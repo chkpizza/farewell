@@ -114,6 +114,14 @@ class AddStoryFragment : Fragment() {
             findNavController().navigate(R.id.action_addStoryFragment_to_videoFragment)
         }
 
+        binding.addPlaceView.setOnClickListener {
+            findNavController().navigate(R.id.action_addStoryFragment_to_placeFragment)
+        }
+
+        binding.removePlaceView.setOnClickListener {
+            addStoryViewModel.removePlace()
+        }
+
         binding.inputBodyView.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 s?.let {

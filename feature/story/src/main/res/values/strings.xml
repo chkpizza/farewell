@@ -20,4 +20,5 @@
     <string name="search_place_view_text">검색</string>
     <string name="search_result_view_text">검색결과</string>
     <string name="register_story_failure_text">게시글을 등록하지 못했습니다</string>
+    <string name="place_search_failure_text">장소를 검색하지 못했습니다</string>
 </resources>

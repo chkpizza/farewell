@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.antique.story.domain.model.PlaceInformation
 import com.antique.story.domain.usecase.RegisterStoryUseCase
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -18,6 +19,9 @@ class AddStoryViewModel @Inject constructor(
 
     private val _selectedVideos = MutableLiveData<List<String>>(emptyList())
     val selectedVideos: LiveData<List<String>> get() = _selectedVideos
+
+    private val _selectedPlace = MutableLiveData<PlaceInformation?>(null)
+    val selectedPlace: LiveData<PlaceInformation?> get() = _selectedPlace
 
     private val _register = MutableLiveData<Boolean>()
     val register: LiveData<Boolean> get() = _register
@@ -42,9 +46,18 @@ class AddStoryViewModel @Inject constructor(
         }
     }
 
+    fun setPlace(selectedPlace: PlaceInformation) {
+        _selectedPlace.value = selectedPlace
+    }
+
+    fun removePlace() {
+        _selectedPlace.value = null
+    }
+
     fun registerStory(body: String) {
         viewModelScope.launch {
             try {
+
                 val pictures = _selectedPictures.value?.let {
                     it.ifEmpty {
                         emptyList()
@@ -57,10 +70,13 @@ class AddStoryViewModel @Inject constructor(
                     }
                 } ?: emptyList()
 
+                val place = _selectedPlace.value ?: PlaceInformation()
+
                 val date = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault()).format(Calendar.getInstance().time)
 
-                val response = registerStoryUseCase(body, pictures, videos, date)
+                val response = registerStoryUseCase(body, pictures, videos, place, date)
                 _register.value = response
+
             } catch (e: Exception) {
                 _register.value = false
             }

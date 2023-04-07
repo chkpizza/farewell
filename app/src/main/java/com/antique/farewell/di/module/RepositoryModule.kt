@@ -4,7 +4,10 @@ import com.antique.login.domain.repository.AuthRepository
 import com.antique.login.data.repository.AuthRepositoryImpl
 import com.antique.settings.data.repo.SettingsRepository
 import com.antique.settings.data.repo.SettingsRepositoryImpl
+import com.antique.story.data.repository.PlaceRepositoryImpl
 import com.antique.story.data.repository.StoryRepositoryImpl
+import com.antique.story.data.retrofit.PlaceApiService
+import com.antique.story.domain.repository.PlaceRepository
 import com.antique.story.domain.repository.StoryRepository
 import dagger.Module
 import dagger.Provides
@@ -36,5 +39,11 @@ class RepositoryModule {
     @Provides
     fun provideStoryRepository(dispatcher: CoroutineDispatcher): StoryRepository {
         return StoryRepositoryImpl(dispatcher)
+    }
+
+    @Singleton
+    @Provides
+    fun providePlaceRepository(placeApiService: PlaceApiService, dispatcher: CoroutineDispatcher): PlaceRepository {
+        return PlaceRepositoryImpl(placeApiService, dispatcher)
     }
 }
