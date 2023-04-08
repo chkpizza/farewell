@@ -78,7 +78,7 @@ class StoryFragment : Fragment() {
     private fun setupRecyclerView() {
         doorAdapter = DoorAdapter()
         storyListAdapter = StoryListAdapter {
-
+            findNavController().navigate(StoryFragmentDirections.actionStoryFragmentToDetailsFragment(it.id))
         }
 
         val config = ConcatAdapter.Config.Builder().apply {

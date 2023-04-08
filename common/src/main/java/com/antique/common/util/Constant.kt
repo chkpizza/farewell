@@ -7,7 +7,7 @@ class Constant {
         const val WITHDRAWN_NODE = "Withdrawn"
         const val STORY_NODE = "Story"
         const val DOOR_NODE = "Door"
-        const val PHOTO_CONTENT = "Photo"
-        const val VIDEO_CONTENT = "Video"
+        const val PHOTO = "jpg"
+        const val VIDEO = "mp4"
     }
 }

@@ -1,6 +1,7 @@
 package com.antique.story.di
 
 import com.antique.story.presentation.view.add.AddStoryFragment
+import com.antique.story.presentation.view.details.DetailsFragment
 import com.antique.story.presentation.view.main.StoryFragment
 import com.antique.story.presentation.view.picture.PictureFragment
 import com.antique.story.presentation.view.place.PlaceFragment
@@ -10,7 +11,8 @@ import dagger.Subcomponent
 @Subcomponent(modules = [
     AddStoryViewModelModule::class,
     PlaceViewModelModule::class,
-    StoryViewModelModule::class
+    StoryViewModelModule::class,
+    DetailsViewModelModule::class
 ])
 interface StoryComponent {
     @Subcomponent.Factory
@@ -23,4 +25,5 @@ interface StoryComponent {
     fun inject(videoFragment: VideoFragment)
     fun inject(placeFragment: PlaceFragment)
     fun inject(storyFragment: StoryFragment)
+    fun inject(detailsFragment: DetailsFragment)
 }

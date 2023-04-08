@@ -15,6 +15,9 @@ class StoryListAdapter(
 ) : ListAdapter<Story, StoryListAdapter.StoryListViewHolder>(diffUtil) {
     inner class StoryListViewHolder(private val binding: ListItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Story) {
+            binding.root.setOnClickListener {
+                onItemClickListener(item)
+            }
             if(item.pictures.isNotEmpty()) {
                 binding.url = item.pictures[0]
             }

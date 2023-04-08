@@ -11,6 +11,17 @@
         <action
             android:id="@+id/action_storyFragment_to_add_story_nav_graph"
             app:destination="@id/add_story_nav_graph" />
+        <action
+            android:id="@+id/action_storyFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <include app:graph="@navigation/add_story_nav_graph" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.antique.story.presentation.view.details.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

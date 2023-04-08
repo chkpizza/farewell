@@ -84,4 +84,6 @@ dependencies {
     implementation(Google.EXOPLAYER_HLS)
     implementation(Google.EXOPLAYER_SMOOTH_STREAMING)
     implementation(Google.EXOPLAYER_UI)
+
+    implementation(ThirdParty.DOTS_INDICATOR)
 }
