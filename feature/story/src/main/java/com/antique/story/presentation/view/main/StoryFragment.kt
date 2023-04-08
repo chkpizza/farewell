@@ -2,6 +2,7 @@ package com.antique.story.presentation.view.main
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.antique.common.util.ApiState
 import com.antique.common.util.ViewInsetsCallback
 import com.antique.story.R
@@ -95,6 +98,16 @@ class StoryFragment : Fragment() {
 
         binding.storyListView.layoutManager = layoutManager
         binding.storyListView.adapter = concatAdapter
+
+        binding.storyListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                if(lastVisibleItemPosition > 0 && !recyclerView.canScrollVertically(1)) {
+                    storyViewModel.fetchMoreStories()
+                }
+            }
+        })
     }
 
     private fun setupViewListener() {
@@ -105,6 +118,7 @@ class StoryFragment : Fragment() {
 
     private fun setupViewState() {
         storyViewModel.fetchDoor()
+        Log.d("ItemCountTest", "fetch first")
         storyViewModel.fetchStories()
     }
 }

@@ -50,15 +50,27 @@ class StoryRepositoryImpl @Inject constructor(private val dispatcher: CoroutineD
     override suspend fun fetchStories(index: String): List<Story> = withContext(dispatcher) {
         val stories = mutableListOf<Story>()
         val uid = Firebase.auth.currentUser?.uid.toString()
-        val response = Firebase.database.reference.child(Constant.STORY_NODE).child(uid).limitToLast(20).get().await()
 
-        response.children.forEach {
-            it.getValue(StoryDto::class.java)?.let { storyDto ->
-                stories.add(mapperToDomain(storyDto))
+        if(index.isEmpty()) {
+            val response = Firebase.database.reference.child(Constant.STORY_NODE).child(uid).limitToLast(10).get().await()
+
+            response.children.forEach {
+                it.getValue(StoryDto::class.java)?.let { storyDto ->
+                    stories.add(mapperToDomain(storyDto))
+                }
             }
-        }
 
-        stories.reversed().toList()
+            stories.reversed().toList()
+        } else {
+            val response = Firebase.database.reference.child(Constant.STORY_NODE).child(uid).orderByKey().endBefore(index).limitToLast(10).get().await()
+
+            response.children.forEach {
+                it.getValue(StoryDto::class.java)?.let { storyDto ->
+                    stories.add(mapperToDomain(storyDto))
+                }
+            }
+            stories.reversed().toList()
+        }
     }
 
     override suspend fun fetchDoor(): Door = withContext(dispatcher) {

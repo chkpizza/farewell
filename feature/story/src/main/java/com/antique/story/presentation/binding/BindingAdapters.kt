@@ -35,19 +35,21 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("items")
-    fun bindItems(recyclerView: RecyclerView, items: List<String>) {
-        when(recyclerView.adapter) {
-            is SelectedPictureListAdapter -> {
-                (recyclerView.adapter as SelectedPictureListAdapter).submitList(items)
-            }
-            is SelectedVideoListAdapter -> {
-                (recyclerView.adapter as SelectedVideoListAdapter).submitList(items)
-            }
-            is VideoListAdapter -> {
-                (recyclerView.adapter as VideoListAdapter).submitList(items)
-            }
-            is PictureListAdapter -> {
-                (recyclerView.adapter as PictureListAdapter).submitList(items)
+    fun bindItems(recyclerView: RecyclerView, items: List<String>?) {
+        items.let { _items ->
+            when(recyclerView.adapter) {
+                is SelectedPictureListAdapter -> {
+                    (recyclerView.adapter as SelectedPictureListAdapter).submitList(_items)
+                }
+                is SelectedVideoListAdapter -> {
+                    (recyclerView.adapter as SelectedVideoListAdapter).submitList(_items)
+                }
+                is VideoListAdapter -> {
+                    (recyclerView.adapter as VideoListAdapter).submitList(_items)
+                }
+                is PictureListAdapter -> {
+                    (recyclerView.adapter as PictureListAdapter).submitList(_items)
+                }
             }
         }
     }

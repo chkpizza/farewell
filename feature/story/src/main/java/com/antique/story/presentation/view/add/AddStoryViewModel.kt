@@ -16,13 +16,13 @@ import javax.inject.Inject
 class AddStoryViewModel @Inject constructor(
     private val registerStoryUseCase: RegisterStoryUseCase
 ) : ViewModel() {
-    private val _selectedPictures = MutableLiveData<List<String>>(emptyList())
+    private val _selectedPictures = MutableLiveData<List<String>>()
     val selectedPictures: LiveData<List<String>> get() = _selectedPictures
 
-    private val _selectedVideos = MutableLiveData<List<String>>(emptyList())
+    private val _selectedVideos = MutableLiveData<List<String>>()
     val selectedVideos: LiveData<List<String>> get() = _selectedVideos
 
-    private val _selectedPlace = MutableLiveData<PlaceInformation?>(null)
+    private val _selectedPlace = MutableLiveData<PlaceInformation?>()
     val selectedPlace: LiveData<PlaceInformation?> get() = _selectedPlace
 
     private val _register = MutableLiveData<ApiState<Story>>()

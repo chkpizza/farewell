@@ -23,15 +23,49 @@ class StoryViewModel @Inject constructor(
     private val _stories = MutableLiveData<ApiState<List<Story>>>()
     val stories: LiveData<ApiState<List<Story>>> get() = _stories
 
+    private lateinit var index: String
+    private var isLoading = false
+
     fun fetchStories() {
         viewModelScope.launch {
             try {
                 if(stories.value == null) {
+                    isLoading = true
                     val response = fetchStoriesUseCase()
+                    if(response.isNotEmpty()) {
+                        index = response.last().id
+                    }
                     _stories.value = ApiState.Success(response)
                 }
             } catch (e: Exception) {
                 _stories.value = ApiState.Error(e)
+            } finally {
+                isLoading = false
+            }
+        }
+    }
+
+    fun fetchMoreStories() {
+        viewModelScope.launch {
+            try {
+                if(::index.isInitialized && !isLoading) {
+                    isLoading = true
+                    val response = fetchStoriesUseCase(index)
+                    if(response.isNotEmpty()) {
+                        index = response.last().id
+                        stories.value?.let {
+                            (it as? ApiState.Success)?.let { state ->
+                                _stories.value = ApiState.Success(
+                                    state.items.toMutableList().apply { addAll(response) }.toList()
+                                )
+                            }
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                _stories.value = ApiState.Error(e)
+            } finally {
+                isLoading = false
             }
         }
     }
