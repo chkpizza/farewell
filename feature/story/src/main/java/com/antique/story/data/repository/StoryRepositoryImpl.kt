@@ -87,6 +87,12 @@ class StoryRepositoryImpl @Inject constructor(private val dispatcher: CoroutineD
         mapperToDomain(storyDto)
     }
 
+    override suspend fun removeStory(id: String): Boolean = withContext(dispatcher) {
+        val uid = Firebase.auth.currentUser?.uid.toString()
+        Firebase.database.reference.child(Constant.STORY_NODE).child(uid).child(id).setValue(null).await()
+        !Firebase.database.reference.child(Constant.STORY_NODE).child(uid).child(id).get().await().exists()
+    }
+
     private suspend fun uploadPicture(uri: String): String {
         val fileName = SimpleDateFormat("yyyy-MM-dd-hhmmss").format(Date()) + ".jpg"
         Firebase.storage.reference.child("images/${fileName}").putFile(uri.toUri()).await()

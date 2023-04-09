@@ -9,4 +9,5 @@ interface StoryRepository {
     suspend fun fetchStories(index: String): List<Story>
     suspend fun fetchDoor(): Door
     suspend fun fetchStory(id: String): Story
+    suspend fun removeStory(id: String): Boolean
 }

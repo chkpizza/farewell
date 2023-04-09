@@ -12,6 +12,7 @@
     <string name="picture_toolbar_text">사진</string>
     <string name="video_toolbar_text">동영상</string>
     <string name="picture_complete_menu_text">선택하기</string>
+    <string name="story_remove_menu_text">삭제하기</string>
     <string name="video_complete_menu_text">선택하기</string>
     <string name="register_story_menu_text">등록하기</string>
     <string name="picture_limit_warning_text">사진은 최대 3개까지 선택가능합니다</string>
@@ -24,4 +25,6 @@
     <string name="door_nick_name_sub_view_text">님의 스토리</string>
     <string name="fetch_door_failure_text">대문글을 읽어오지 못했습니다</string>
     <string name="fetch_story_failure_text">스토리를 읽어오지 못했습니다</string>
+    <string name="remove_story_failure_text">스토리를 삭제하지 못했습니다</string>
+    <string name="remove_story_exception_text">스토리 삭제 중 예외가 발생하였습니다</string>
 </resources>

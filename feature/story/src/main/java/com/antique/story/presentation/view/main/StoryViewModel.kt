@@ -90,4 +90,12 @@ class StoryViewModel @Inject constructor(
             }
         }
     }
+
+    fun excludeStory(id: String) {
+        stories.value?.let {
+            (it as? ApiState.Success)?.let { state ->
+                _stories.value = ApiState.Success(state.items.filter { story -> story.id != id })
+            }
+        }
+    }
 }

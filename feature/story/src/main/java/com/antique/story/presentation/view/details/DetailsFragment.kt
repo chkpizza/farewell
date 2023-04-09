@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -19,6 +21,7 @@ import com.antique.story.R
 import com.antique.story.databinding.FragmentDetailsBinding
 import com.antique.story.di.StoryComponentProvider
 import com.antique.story.presentation.view.main.StoryViewModel
+import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 class DetailsFragment : Fragment() {
@@ -33,6 +36,7 @@ class DetailsFragment : Fragment() {
     private val id by lazy { args.id }
 
     private lateinit var mediaListAdapter: MediaListAdapter
+    private lateinit var storyRemoveMenuItem: MenuItem
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -58,8 +62,10 @@ class DetailsFragment : Fragment() {
 
     private fun initialize() {
         setupInsets()
+        setupToolbar()
         setupViewPager()
         setupViewState()
+        setupObservers()
     }
 
     private fun setupInsets() {
@@ -68,6 +74,23 @@ class DetailsFragment : Fragment() {
                 top = insets.systemWindowInsets.top
             )
             insets
+        }
+    }
+
+    private fun setupToolbar() {
+        binding.storyDetailsToolbarView.inflateMenu(R.menu.menu_details)
+        storyRemoveMenuItem = binding.storyDetailsToolbarView.menu.findItem(R.id.story_remove)
+
+        binding.storyDetailsToolbarView.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.story_remove -> {
+                    detailsViewModel.removeStory(id)
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
         }
     }
 
@@ -88,6 +111,25 @@ class DetailsFragment : Fragment() {
 
     private fun setupViewState() {
         detailsViewModel.fetchStory(id)
+    }
+
+    private fun setupObservers() {
+        detailsViewModel.removeStory.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiState.Success -> {
+                    if(it.items) {
+                        storyViewModel.excludeStory(id)
+                        findNavController().navigateUp()
+                    } else {
+                        Snackbar.make(binding.root, getString(R.string.remove_story_failure_text), Snackbar.LENGTH_SHORT).show()
+                    }
+                }
+                is ApiState.Error -> {
+                    Snackbar.make(binding.root, getString(R.string.remove_story_exception_text), Snackbar.LENGTH_SHORT).show()
+                }
+                is ApiState.Loading -> {}
+            }
+        }
     }
 
     override fun onResume() {
