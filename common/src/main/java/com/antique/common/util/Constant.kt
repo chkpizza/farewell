@@ -7,6 +7,7 @@ class Constant {
         const val WITHDRAWN_NODE = "Withdrawn"
         const val STORY_NODE = "Story"
         const val DOOR_NODE = "Door"
+        const val PREVIEW_NODE = "Preview"
         const val PHOTO = "jpg"
         const val VIDEO = "mp4"
     }

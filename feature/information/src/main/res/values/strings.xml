@@ -4,4 +4,7 @@
     <string name="information_toolbar_text">함께해요</string>
     <string name="recommend_view_text">부모님과 함께 어때요?</string>
     <string name="see_more_view_text">더보기</string>
+    <string name="amount_free_text">무료</string>
+    <string name="amount_pay_text">유료</string>
+    <string name="fetch_preview_failure_text">정보를 불러오지 못했습니다</string>
 </resources>

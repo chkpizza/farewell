@@ -1,5 +1,6 @@
 package com.antique.information.presentation.view.information
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,17 +9,29 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.antique.information.R
 import com.antique.information.databinding.FragmentInformationBinding
+import com.antique.information.di.InformationComponentProvider
 import com.antique.information.domain.model.Preview
+import javax.inject.Inject
 
 class InformationFragment : Fragment() {
     private var _binding: FragmentInformationBinding? = null
     private val binding get() = _binding!!
 
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val informationViewModel by navGraphViewModels<InformationViewModel>(R.id.information_nav_graph) { viewModelFactory }
+
     private lateinit var recommendListAdapter: RecommendListAdapter
     private lateinit var previewListAdapter: PreviewListAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().applicationContext as InformationComponentProvider).provideInformationComponent().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +43,10 @@ class InformationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.lifecycleOwner = this
+        binding.vm = informationViewModel
+
         initialize()
     }
 
@@ -67,11 +84,6 @@ class InformationFragment : Fragment() {
         }
         recommendListAdapter.submitList(recommends)
 
-        val previews = mutableListOf<Preview>().apply {
-            add(Preview("https://culture.seoul.go.kr/cmmn/file/imageSrc.do?fileStreCours=35367259ca6485b8ea26e64a6b235a53a15d7fe0395f8c12383db80cbddb43e6&streFileNm=8cad7c53d91e2753bc4f7296a212085d2657b980fbf690d891fc361941a10452", "2023 서울장미축제", "중랑장미공원", true, "2023.05.13~2023.05.28"))
-            add(Preview("https://culture.seoul.go.kr/cmmn/file/imageSrc.do?fileStreCours=35367259ca6485b8ea26e64a6b235a5391b248ce4a65fbaaa560d8d241e784e6&streFileNm=cc0629ec7305545a45b1dd1f7fc95edc4200ca52209836814279c2c87fbc6042", "2023 노들섬 반려견 페스티벌 [놀멍뭐하니]", "노들섬 일대", true, "2023.04.01~2023.04.01"))
-            add(Preview("https://culture.seoul.go.kr/cmmn/file/imageSrc.do?fileStreCours=35367259ca6485b8ea26e64a6b235a5391b248ce4a65fbaaa560d8d241e784e6&streFileNm=944b4793f178f3a8d8a44f39888d8c006db30ab9edb0bb8e4f449a9903cb06fb", "2023 서울대공원 벚꽃축제 [다시 만나 봄]", "서울대공원 일대", true, "2023.04.05~2023.04.09"))
-        }
-        previewListAdapter.submitList(previews)
+        informationViewModel.fetchPreview()
     }
 }

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="preview"
+            type="com.antique.information.domain.model.Preview" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +19,7 @@
             android:layout_height="120dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            app:url="@{preview.imageUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +33,7 @@
             android:maxLines="2"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:text="@{preview.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_view"
             app:layout_constraintTop_toTopOf="@id/image_view" />
@@ -40,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
+            android:text="@{preview.address}"
             app:layout_constraintStart_toEndOf="@id/image_view"
             app:layout_constraintTop_toBottomOf="@id/name_view" />
 
@@ -50,6 +55,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
             android:padding="4dp"
+            app:amount="@{preview.free}"
             app:layout_constraintStart_toEndOf="@id/image_view"
             app:layout_constraintTop_toBottomOf="@id/address_view" />
 
@@ -58,6 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:text="@{preview.period}"
             app:layout_constraintBottom_toBottomOf="@id/image_view"
             app:layout_constraintStart_toEndOf="@id/image_view" />
 

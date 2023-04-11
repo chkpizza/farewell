@@ -4,6 +4,6 @@ data class Preview(
     val imageUrl: String,
     val name: String,
     val address: String,
-    val isFree: Boolean,
+    val free: Boolean,
     val period: String
 )

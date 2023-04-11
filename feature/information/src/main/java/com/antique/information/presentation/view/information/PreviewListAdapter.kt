@@ -15,23 +15,7 @@ import com.bumptech.glide.Glide
 class PreviewListAdapter : ListAdapter<Preview, PreviewListAdapter.PreviewListViewHolder>(diffUtil) {
     inner class PreviewListViewHolder(private val binding: ListItemInformationBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Preview) {
-            Glide.with(binding.imageView.context)
-                .load(item.imageUrl)
-                .into(binding.imageView)
-
-            binding.nameView.text = item.name
-            binding.addressView.text = item.address
-            binding.periodView.text = item.period
-
-            if(item.isFree) {
-                binding.amountView.background = ResourcesCompat.getDrawable(binding.root.resources, com.antique.common.R.drawable.shape_rectangle_8dp_pink, null)
-                binding.amountView.setTextColor(binding.root.resources.getColor(com.antique.common.R.color.white, null))
-                binding.amountView.text = "무료"
-            } else {
-                binding.amountView.background = ResourcesCompat.getDrawable(binding.root.resources, com.antique.common.R.drawable.shape_rectangle_8dp_orange, null)
-                binding.amountView.setTextColor(binding.root.resources.getColor(com.antique.common.R.color.white, null))
-                binding.amountView.text = "유료"
-            }
+            binding.preview = item
         }
     }
     companion object {

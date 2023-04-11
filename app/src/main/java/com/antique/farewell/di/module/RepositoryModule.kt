@@ -1,5 +1,7 @@
 package com.antique.farewell.di.module
 
+import com.antique.information.data.repository.InformationRepositoryImpl
+import com.antique.information.domain.repository.InformationRepository
 import com.antique.login.domain.repository.AuthRepository
 import com.antique.login.data.repository.AuthRepositoryImpl
 import com.antique.settings.data.repo.SettingsRepository
@@ -45,5 +47,11 @@ class RepositoryModule {
     @Provides
     fun providePlaceRepository(placeApiService: PlaceApiService, dispatcher: CoroutineDispatcher): PlaceRepository {
         return PlaceRepositoryImpl(placeApiService, dispatcher)
+    }
+
+    @Singleton
+    @Provides
+    fun provideInformationRepository(dispatcher: CoroutineDispatcher): InformationRepository {
+        return InformationRepositoryImpl(dispatcher)
     }
 }

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.antique.information.presentation.view.information.InformationViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -94,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:overScrollMode="never"
+                app:preview="@{vm.preview}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/see_more_view" />
