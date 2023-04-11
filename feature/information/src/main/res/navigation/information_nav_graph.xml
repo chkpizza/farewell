@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/informationFragment"
-        android:name="com.antique.information.InformationFragment"
+        android:name="com.antique.information.presentation.view.information.InformationFragment"
         android:label="InformationFragment" />
 </navigation>
