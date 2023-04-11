@@ -1,6 +1,6 @@
 package com.antique.story.data.retrofit
 
-import com.antique.story.data.model.place.PlaceResponse
+import com.antique.story.data.model.PlaceDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -12,5 +12,5 @@ interface PlaceApiService {
         @Header("Authorization") key: String,
         @Query("query") query: String,
         @Query("page") page: Int
-    ): Response<PlaceResponse>
+    ): Response<PlaceDto>
 }

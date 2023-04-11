@@ -4,13 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.antique.story.presentation.view.main.StoryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.view.story.StoryFragment">
+        tools:context=".presentation.view.main.StoryFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/story_toolbar_view"
@@ -43,10 +45,13 @@
             android:id="@+id/story_list_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="8dp"
             app:layout_constraintTop_toBottomOf="@id/story_toolbar_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:door="@{vm.door}"
+            app:stories="@{vm.stories}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_story_view"

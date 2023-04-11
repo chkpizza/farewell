@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="video"
-            type="com.antique.story.domain.model.Video" />
+            name="url"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,14 +13,16 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp">
 
+
+
         <androidx.cardview.widget.CardView
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:cardCornerRadius="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -30,13 +32,13 @@
                     android:id="@+id/video_view"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    app:imageUrl="@{video.uri}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:url="@{url}"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true" />
 
                 <ImageView
                     android:id="@+id/remove_video_view"
@@ -48,26 +50,11 @@
                     android:src="@drawable/ic_close"
                     android:adjustViewBounds="true"
                     android:scaleType="center"/>
-
-                <TextView
-                    android:id="@+id/video_duration_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/shape_rectangle_8dp_black"
-                    android:padding="4dp"
-                    android:textColor="@color/white"
-                    android:text="@{@string/duration_format((video.duration/1000)/60, (video.duration/1000)%60)}"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         </androidx.cardview.widget.CardView>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

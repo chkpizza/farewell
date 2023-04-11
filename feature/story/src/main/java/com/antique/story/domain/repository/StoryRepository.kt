@@ -1,12 +1,13 @@
 package com.antique.story.domain.repository
 
-import com.antique.story.data.model.DoorDto
-import com.antique.story.data.model.StoryDto
+import com.antique.story.domain.model.Door
+import com.antique.story.domain.model.PlaceInformation
+import com.antique.story.domain.model.Story
 
 interface StoryRepository {
-    suspend fun getStories(): List<StoryDto>
-    suspend fun getMoreStories(idx: String): List<StoryDto>
-    suspend fun getDoor(): DoorDto
-    suspend fun getStory(storyId: String): StoryDto
-    suspend fun removeStory(storyId: String): Boolean
+    suspend fun registerStory(body: String, pictures: List<String>, videos: List<String>, place: PlaceInformation, date: String): Story
+    suspend fun fetchStories(index: String): List<Story>
+    suspend fun fetchDoor(): Door
+    suspend fun fetchStory(id: String): Story
+    suspend fun removeStory(id: String): Boolean
 }

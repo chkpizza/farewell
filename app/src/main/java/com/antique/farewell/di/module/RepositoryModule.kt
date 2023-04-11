@@ -1,14 +1,14 @@
 package com.antique.farewell.di.module
 
-import com.antique.login.data.repo.AuthRepository
-import com.antique.login.data.repo.AuthRepositoryImpl
+import com.antique.login.domain.repository.AuthRepository
+import com.antique.login.data.repository.AuthRepositoryImpl
 import com.antique.settings.data.repo.SettingsRepository
 import com.antique.settings.data.repo.SettingsRepositoryImpl
-import com.antique.story.domain.repository.StoryRepository
+import com.antique.story.data.repository.PlaceRepositoryImpl
 import com.antique.story.data.repository.StoryRepositoryImpl
-import com.antique.story.domain.repository.WriteStoryRepository
-import com.antique.story.data.repository.WriteStoryRepositoryImpl
 import com.antique.story.data.retrofit.PlaceApiService
+import com.antique.story.domain.repository.PlaceRepository
+import com.antique.story.domain.repository.StoryRepository
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
@@ -31,8 +31,8 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideWriteStoryRepository(apiService: PlaceApiService, dispatcher: CoroutineDispatcher): WriteStoryRepository {
-        return WriteStoryRepositoryImpl(apiService, dispatcher)
+    fun provideSettingsRepository(dispatcher: CoroutineDispatcher): SettingsRepository {
+        return SettingsRepositoryImpl(dispatcher)
     }
 
     @Singleton
@@ -43,7 +43,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideSettingsRepository(dispatcher: CoroutineDispatcher): SettingsRepository {
-        return SettingsRepositoryImpl(dispatcher)
+    fun providePlaceRepository(placeApiService: PlaceApiService, dispatcher: CoroutineDispatcher): PlaceRepository {
+        return PlaceRepositoryImpl(placeApiService, dispatcher)
     }
 }

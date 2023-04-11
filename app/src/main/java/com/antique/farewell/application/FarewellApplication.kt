@@ -7,10 +7,11 @@ import com.antique.login.di.AuthComponentProvider
 import com.antique.login.di.component.AuthComponent
 import com.antique.settings.di.SettingsComponentProvider
 import com.antique.settings.di.component.SettingsComponent
+import com.antique.story.di.StoryComponent
 import com.antique.story.di.StoryComponentProvider
-import com.antique.story.di.component.StoryComponent
 
-class FarewellApplication : Application(), AuthComponentProvider, StoryComponentProvider, SettingsComponentProvider {
+class FarewellApplication : Application(), AuthComponentProvider, SettingsComponentProvider,
+    StoryComponentProvider {
     val appComponent by lazy { initAppComponent() }
 
     private fun initAppComponent(): AppComponent {
@@ -25,12 +26,12 @@ class FarewellApplication : Application(), AuthComponentProvider, StoryComponent
         return appComponent.getAuthComponent().create()
     }
 
-    override fun provideStoryComponent(): StoryComponent {
-        return appComponent.getStoryComponent().create()
-    }
-
     override fun provideSettingsComponent(): SettingsComponent {
         return appComponent.getSettingsComponent().create()
+    }
+
+    override fun provide(): StoryComponent {
+        return appComponent.getStoryComponent().create()
     }
 
 

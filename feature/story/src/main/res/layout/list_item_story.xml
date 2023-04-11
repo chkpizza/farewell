@@ -36,7 +36,7 @@
                     android:id="@+id/story_preview_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:imageUrl="@{url}"
+                    app:url="@{url}"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop" />
 
@@ -47,8 +47,4 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
 </layout>
